@@ -1,0 +1,365 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{rmtemplate}[2020/11/08]
+
+% This package takes care of my own graphic charter
+
+\RequirePackage{pifont}																				% caractères très spéciaux
+%\RequirePackage{fancyhdr}																		% header
+\RequirePackage{xcolor}																			% colors
+\RequirePackage[framemethod=tikz]{mdframed}									% fancy environments
+\RequirePackage{chngcntr}
+\RequirePackage{listings}
+
+%%%%%%%%%% graphic charter
+
+\ProcessOptions
+
+\renewcommand{\familydefault}{\sfdefault}												% sans serif font
+
+%%%%% HEADER
+%\pagestyle{fancy}
+%\lhead{\textcolor{gray_f}{Physique-Chimie\\R. METZDORFF}}
+%\chead{\textcolor{gray_f}{Lycée Suzanne Valadon}}
+%\rhead{\textcolor{gray_f}{2020-2021}}
+%\renewcommand{\headrulewidth}{0.4pt}
+%\let\HeadRule\headrule
+%\renewcommand\headrule{\color{gray_f}\HeadRule}
+
+%%%%% COLORS
+\definecolor{gray_f}{RGB}{68,84,106}
+\definecolor{gray_c}{RGB}{214,220,229}
+\definecolor{gray_cc}{RGB}{245,245,245}
+\definecolor{bleu_f}{RGB}{91,155,213}
+\definecolor{bleu_c}{RGB}{222,235,247}
+\definecolor{red_f}{RGB}{204,0,0}
+\definecolor{red_c}{RGB}{245,204,204}
+\definecolor{orange_f}{RGB}{237,125,49}
+\definecolor{orange_c}{RGB}{251,229,214}
+\definecolor{green_f}{RGB}{112,173,71}
+\definecolor{green_c}{RGB}{226,240,217}
+\definecolor{yellow_f}{RGB}{255,192,0}
+\definecolor{yellow_c}{RGB}{255,242,204}
+\definecolor{code_keyword}{RGB}{23,23,139}										% colors for pyhton code
+\definecolor{code_comment}{RGB}{50,137,21}
+\definecolor{code_string}{RGB}{139,139,25}
+
+%%%%% NEW ENVIRONMENTS
+
+%%% header
+\mdfdefinestyle{s_head}{%
+	linecolor=gray_f!,
+	outerlinewidth=3pt,%
+	frametitlerule=false,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	leftline=false,
+	backgroundcolor=gray_c,
+	innertopmargin=8pt,
+	roundcorner=0pt,
+	nobreak=true,
+	fontcolor=gray_f
+}
+\newmdenv[style=s_head]{header_env}
+\newenvironment{header}
+{%\stepcounter{exa}%
+	\addcontentsline{ldf}{figure}{0}%
+	\begin{header_env}\centering\LARGE\bf}
+	{\end{header_env}}
+	
+%%% definition
+\mdfdefinestyle{s_def}{%
+	linecolor=red_f!,
+	outerlinewidth=3pt,%
+	frametitlerule=false,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	leftline=true,
+	backgroundcolor=red_c,
+	innertopmargin=8pt,
+	roundcorner=0pt,
+	nobreak=true,
+	fontcolor=red_f
+}
+\newmdenv[style=s_def]{def_env}
+\newenvironment{definition}
+{%\stepcounter{exa}%
+	\addcontentsline{ldf}{figure}{0}%
+	\begin{def_env}\textbf{Définition :}}
+	{\end{def_env}}
+
+%%% exemple
+\mdfdefinestyle{s_ex}{%
+	linecolor=gray_f!,
+	outerlinewidth=3pt,%
+	frametitlerule=false,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	leftline=true,
+	backgroundcolor=gray_c,
+	innertopmargin=8pt,
+	roundcorner=0pt,
+	nobreak=true,
+	fontcolor=gray_f
+}
+\newmdenv[style=s_ex]{ex_env}
+\newenvironment{exemple}
+{%\stepcounter{exa}%
+	\addcontentsline{ldf}{figure}{0}%
+	\begin{ex_env}\textbf{Exemple :}}
+	{\end{ex_env}}
+
+%%% analyse a priori
+\mdfdefinestyle{s_prior}{%
+	linecolor=green_f!,
+	outerlinewidth=3pt,%
+	frametitlerule=false,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	leftline=true,
+	backgroundcolor=green_c,
+	innertopmargin=8pt,
+	roundcorner=0pt,
+	nobreak=true,
+	fontcolor=green_f
+}
+\newmdenv[style=s_prior]{prior_env}
+\newenvironment{prior}
+{%\stepcounter{exa}%
+	\addcontentsline{ldf}{figure}{0}%
+	\begin{prior_env}\textbf{A priori :}}
+	{\end{prior_env}}
+
+%%% analyse a posteriori
+\mdfdefinestyle{s_post}{%
+	linecolor=green_f!,
+	outerlinewidth=3pt,%
+	frametitlerule=false,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	leftline=true,
+	backgroundcolor=green_c,
+	innertopmargin=8pt,
+	roundcorner=0pt,
+	nobreak=true,
+	fontcolor=green_f
+}
+\newmdenv[style=s_post]{post_env}
+\newenvironment{post}
+{%\stepcounter{exa}%
+	\addcontentsline{ldf}{figure}{0}%
+	\begin{post_env}\textbf{A posteriori :}}
+	{\end{post_env}}
+	
+%%% Experience
+
+\mdfdefinestyle{s_experience}{%
+	linecolor=bleu_f!,
+	outerlinewidth=3pt,%
+	frametitlerule=false,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	backgroundcolor=bleu_c,
+	innertopmargin=8pt,
+	roundcorner=0pt,
+	nobreak=true
+}
+\newmdenv[style=s_experience]{experience_env}
+\newenvironment{experience}
+{%\stepcounter{exa}%
+	\addcontentsline{ldf}{figure}{0}%
+	\begin{experience_env}}
+%	\begin{experience_env}[]{\noindent\colorbox[rgb]{0.1 0.1 0.53}{\textbf{\color{white} Expérience : }}\\}}
+	{\end{experience_env}}
+
+%%% Slide
+
+\mdfdefinestyle{s_slide}{%
+	linecolor=green_f!,
+	outerlinewidth=3pt,%
+	frametitlerule=false,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	backgroundcolor=green_c,
+	innertopmargin=8pt,
+	roundcorner=0pt,
+	nobreak=true
+}
+\newmdenv[style=s_slide]{slide_env}
+
+\newenvironment{slide}
+	{%\stepcounter{exa}%
+%		\newenvironment{myenv}{\begin{adjustwidth}{2cm}{}}{\end{adjustwidth}}
+		\addcontentsline{ldf}{figure}{0}%
+		\begin{slide_env}}
+		{\end{slide_env}
+	}
+
+%%% Conseils
+\mdfdefinestyle{s_conseil}{%
+	linecolor=orange_f!,
+	outerlinewidth=3pt,%
+	frametitlerule=false,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	backgroundcolor=orange_c,
+	innertopmargin=8pt,
+	roundcorner=0pt,
+	nobreak=true,
+	fontcolor=orange_f
+}
+\newmdenv[style=s_conseil]{conseil_env}
+\newenvironment{conseil}
+{%\stepcounter{exa}%
+	\addcontentsline{ldf}{figure}{0}%
+	\begin{conseil_env}\textbf{Conseil :}}
+	{\end{conseil_env}
+	}
+
+%%% Remarque
+\mdfdefinestyle{s_remarque}{%
+	linecolor=green_f!,
+	outerlinewidth=3pt,%
+	frametitlerule=false,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	backgroundcolor=green_c,
+	innertopmargin=8pt,
+	roundcorner=0pt,
+	nobreak=true,
+	fontcolor=green_f
+}
+\newmdenv[style=s_remarque]{remarque_env}
+\newenvironment{remarque}
+{%\stepcounter{exa}%
+	\addcontentsline{ldf}{figure}{0}%
+	\begin{remarque_env}\textbf{Remarque :}}
+	{\end{remarque_env}
+	}
+	
+%%% Document
+\mdfdefinestyle{s_doc}{%
+	linecolor=bleu_f!,
+	outerlinewidth=1pt,%
+	frametitlerule=false,
+	topline=true,
+	bottomline=true,
+	rightline=true,
+	backgroundcolor=white,
+	innertopmargin=8pt,
+	roundcorner=0pt,
+	nobreak=true,
+	fontcolor=black
+}
+\newmdenv[style=s_doc]{doc_env}
+\newenvironment{doc}
+{%\stepcounter{exa}%
+	\addcontentsline{ldf}{figure}{0}%
+	\begin{doc_env}\textbf{Document}}
+	{\end{doc_env}
+	}
+	
+%%% Document
+\mdfdefinestyle{s_bframe}{%
+	linecolor=bleu_f!,
+	outerlinewidth=1pt,%
+	frametitlerule=false,
+	topline=true,
+	bottomline=true,
+	rightline=true,
+	backgroundcolor=white,
+	innertopmargin=8pt,
+	roundcorner=0pt,
+	nobreak=true,
+	fontcolor=black
+}
+\newmdenv[style=s_bframe]{bframe_env}
+\newenvironment{bframe}
+{%\stepcounter{exa}%
+	\addcontentsline{ldf}{figure}{0}%
+	\begin{bframe_env}}
+	{\end{bframe_env}
+	}
+	
+%%% Objectif
+\mdfdefinestyle{s_objectif}{%
+	linecolor=red_f!,
+	outerlinewidth=3pt,%
+	frametitlerule=false,
+	%topline=false,
+	%bottomline=false,
+	%rightline=false,
+	backgroundcolor=white,
+	innertopmargin=8pt,
+	roundcorner=0pt,
+	nobreak=true,
+	fontcolor=red_f
+}
+\newmdenv[style=s_objectif]{objectif_env}
+\newenvironment{objectif}
+{%\stepcounter{exa}%
+	\addcontentsline{ldf}{figure}{0}%
+	\begin{objectif_env}\centering\LARGE\bf}
+	{\end{objectif_env}
+	}
+
+%%%%% PYTHON
+
+\lstdefinestyle{Python}{
+    language        = Python,
+    basicstyle      = \ttfamily,
+    keywordstyle    = \color{code_keyword},
+    stringstyle     = \color{code_string},
+    commentstyle    = \color{code_comment}\itshape
+}
+
+%%%%% New command
+
+\newcommand{\cmark}{\ding{51}}			% check mark
+\newcommand{\xmark}{\ding{55}}			% cross mark
+
+\newcommand{\prof}[1]{\textcolor{gray_f}{\textit{#1}}}
+
+\newcommand{\app}{\colorbox{bleu_c}{\textcolor{bleu_f}{APP}}}
+\newcommand{\rea}{\colorbox{yellow_c}{\textcolor{yellow_f}{REA}}}
+\newcommand{\anarai}{\colorbox{green_c}{\textcolor{green_f}{ANA-RAI}}}
+\newcommand{\val}{\colorbox{orange_c}{\textcolor{orange_f}{VAL}}}
+\newcommand{\com}{\colorbox{red_c}{\textcolor{red_f}{COM}}}
+\newcommand{\auto}{\colorbox{white}{\textcolor{black}{AUTO}}}
+\newcommand{\rco}{\colorbox{gray_c}{\textcolor{gray_f}{RCO}}}
+
+%%%%% Chimie
+
+\newcommand{\diazote}{\text{N}_\text{2}}
+\newcommand{\dioxygene}{\text{O}_\text{2}}
+\newcommand{\dioxydedecarbone}{\text{CO}_\text{2}}
+\newcommand{\eau}{\text{H}_\text{2}\text{O}}
+\newcommand{\saccharose}{\text{C}_\text{12}\text{H}_\text{22}\text{O}_\text{11}}
+\newcommand{\chloruredemagnesium}{\text{MgCl}_\text{2}}
+
+
+\newcommand{\ionsodium}{\text{Na}^\text{+}}
+\newcommand{\ioncuivreII}{\text{Cu}^\text{2+}}
+\newcommand{\ionmagnesiumII}{\text{Mg}^\text{2+}}
+\newcommand{\ionhydrogene}{\text{H}^\text{+}}
+\newcommand{\ionpotassium}{\text{K}^\text{+}}
+\newcommand{\ionferII}{\text{Fe}^\text{2+}}
+\newcommand{\ionferIII}{\text{Fe}^\text{3+}}
+\newcommand{\ioncalcium}{\text{Ca}^\text{2+}}
+
+\newcommand{\fluorure}{\text{F}^\text{-}}
+\newcommand{\iodure}{\text{I}^\text{-}}
+\newcommand{\chlorure}{\text{Cl}^\text{-}}
+\newcommand{\sulfate}{\text{SO}_\text{4}^\text{2-}}
+\newcommand{\permanganate}{\text{MnO}_\text{4}^\text{-}}
+\newcommand{\hydroxyde}{\text{HO}^\text{-}}
+
+\endinput

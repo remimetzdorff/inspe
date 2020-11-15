@@ -1,0 +1,38 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{rmpackages}[2020/11/08]
+
+% This package takes care of all packages I use every single time in my school documents
+
+%%%%%%%%%% usual packages
+
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[french]{babel}
+\RequirePackage{tikz}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{amsmath}																				% les maths
+\RequirePackage{amsfonts}
+\RequirePackage{amssymb}
+\RequirePackage{fourier}																					% symboles intégral propre
+\RequirePackage{graphicx}
+\RequirePackage[left=2cm,right=2cm,top=3cm,bottom=2cm]{geometry}	% les marges
+\RequirePackage{multicol}																					% pour écrire sur plusieurs colones
+\RequirePackage[thinspace,thinqspace,amssymb]{SIunits}							% écriture des nombres et unités
+\RequirePackage{setspace}																				% set space between lines
+\RequirePackage{enumitem}																				% resume command in enumerate
+\RequirePackage{array}																						% stretch array lines
+%\usepackage{url}																							%
+\RequirePackage[breaklinks]{hyperref}															% clickable links
+\RequirePackage[hyphenbreaks]{breakurl}														% for long urls
+\RequirePackage{chemfig}																					% pour les formules chimiques
+
+\ProcessOptions
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=red_f,
+    citecolor=bleu_f,
+    filecolor=green_f,
+    urlcolor=bleu_f
+}
+
+\endinput
