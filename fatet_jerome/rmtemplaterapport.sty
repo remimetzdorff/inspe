@@ -3,18 +3,18 @@
 
 % This package takes care of my own graphic charter
 
-\RequirePackage{pifont}																				% caractères très spéciaux
+%\RequirePackage{pifont}																				% caractères très spéciaux
 %\RequirePackage{fancyhdr}																		% header
 \RequirePackage{xcolor}																			% colors
 \RequirePackage[framemethod=tikz]{mdframed}									% fancy environments
-\RequirePackage{chngcntr}
-\RequirePackage{listings}
+%\RequirePackage{chngcntr}
+%\RequirePackage{listings}
 
 %%%%%%%%%% graphic charter
 
 \ProcessOptions
 
-\renewcommand{\familydefault}{\sfdefault}												% sans serif font
+%\renewcommand{\familydefault}{\sfdefault}												% sans serif font
 
 %%%%% HEADER
 %\pagestyle{fancy}
@@ -42,284 +42,33 @@
 \definecolor{code_keyword}{RGB}{23,23,139}										% colors for pyhton code
 \definecolor{code_comment}{RGB}{50,137,21}
 \definecolor{code_string}{RGB}{139,139,25}
+\definecolor{red_unilim}{RGB}{166,41,41}
+\definecolor{gray_unilim}{RGB}{78,87,94}
+\definecolor{orange_unilim}{RGB}{209,98,40}
 
 %%%%% NEW ENVIRONMENTS
 
 %%% header
 \mdfdefinestyle{s_head}{%
-	linecolor=gray_f!,
+	linecolor=red_unilim!,
 	outerlinewidth=3pt,%
 	frametitlerule=false,
 	topline=false,
 	bottomline=false,
 	rightline=false,
 	leftline=false,
-	backgroundcolor=gray_c,
+	backgroundcolor=red_unilim,
 	innertopmargin=8pt,
 	roundcorner=0pt,
 	nobreak=true,
-	fontcolor=gray_f
+	fontcolor=white
 }
 \newmdenv[style=s_head]{header_env}
 \newenvironment{header}
 {%\stepcounter{exa}%
 	\addcontentsline{ldf}{figure}{0}%
-	\begin{header_env}\centering\LARGE\bf}
+	\begin{header_env}\qquad\Large\bf}
 	{\end{header_env}}
-	
-%%% definition
-\mdfdefinestyle{s_def}{%
-	linecolor=red_f!,
-	outerlinewidth=3pt,%
-	frametitlerule=false,
-	topline=false,
-	bottomline=false,
-	rightline=false,
-	leftline=true,
-	backgroundcolor=red_c,
-	innertopmargin=8pt,
-	roundcorner=0pt,
-	nobreak=true,
-	fontcolor=red_f
-}
-\newmdenv[style=s_def]{def_env}
-\newenvironment{definition}
-{%\stepcounter{exa}%
-	\addcontentsline{ldf}{figure}{0}%
-	\begin{def_env}\textbf{Définition :}}
-	{\end{def_env}}
-
-%%% exemple
-\mdfdefinestyle{s_ex}{%
-	linecolor=gray_f!,
-	outerlinewidth=3pt,%
-	frametitlerule=false,
-	topline=false,
-	bottomline=false,
-	rightline=false,
-	leftline=true,
-	backgroundcolor=gray_c,
-	innertopmargin=8pt,
-	roundcorner=0pt,
-	nobreak=true,
-	fontcolor=gray_f
-}
-\newmdenv[style=s_ex]{ex_env}
-\newenvironment{exemple}
-{%\stepcounter{exa}%
-	\addcontentsline{ldf}{figure}{0}%
-	\begin{ex_env}\textbf{Exemple :}}
-	{\end{ex_env}}
-
-%%% analyse a priori
-\mdfdefinestyle{s_prior}{%
-	linecolor=green_f!,
-	outerlinewidth=3pt,%
-	frametitlerule=false,
-	topline=false,
-	bottomline=false,
-	rightline=false,
-	leftline=true,
-	backgroundcolor=green_c,
-	innertopmargin=8pt,
-	roundcorner=0pt,
-	nobreak=true,
-	fontcolor=green_f
-}
-\newmdenv[style=s_prior]{prior_env}
-\newenvironment{prior}
-{%\stepcounter{exa}%
-	\addcontentsline{ldf}{figure}{0}%
-	\begin{prior_env}\textbf{A priori :}}
-	{\end{prior_env}}
-
-%%% analyse a posteriori
-\mdfdefinestyle{s_post}{%
-	linecolor=green_f!,
-	outerlinewidth=3pt,%
-	frametitlerule=false,
-	topline=false,
-	bottomline=false,
-	rightline=false,
-	leftline=true,
-	backgroundcolor=green_c,
-	innertopmargin=8pt,
-	roundcorner=0pt,
-	nobreak=true,
-	fontcolor=green_f
-}
-\newmdenv[style=s_post]{post_env}
-\newenvironment{post}
-{%\stepcounter{exa}%
-	\addcontentsline{ldf}{figure}{0}%
-	\begin{post_env}\textbf{A posteriori :}}
-	{\end{post_env}}
-	
-%%% Experience
-
-\mdfdefinestyle{s_experience}{%
-	linecolor=bleu_f!,
-	outerlinewidth=3pt,%
-	frametitlerule=false,
-	topline=false,
-	bottomline=false,
-	rightline=false,
-	backgroundcolor=bleu_c,
-	innertopmargin=8pt,
-	roundcorner=0pt,
-	nobreak=true
-}
-\newmdenv[style=s_experience]{experience_env}
-\newenvironment{experience}
-{%\stepcounter{exa}%
-	\addcontentsline{ldf}{figure}{0}%
-	\begin{experience_env}}
-%	\begin{experience_env}[]{\noindent\colorbox[rgb]{0.1 0.1 0.53}{\textbf{\color{white} Expérience : }}\\}}
-	{\end{experience_env}}
-
-%%% Slide
-
-\mdfdefinestyle{s_slide}{%
-	linecolor=green_f!,
-	outerlinewidth=3pt,%
-	frametitlerule=false,
-	topline=false,
-	bottomline=false,
-	rightline=false,
-	backgroundcolor=green_c,
-	innertopmargin=8pt,
-	roundcorner=0pt,
-	nobreak=true
-}
-\newmdenv[style=s_slide]{slide_env}
-
-\newenvironment{slide}
-	{%\stepcounter{exa}%
-%		\newenvironment{myenv}{\begin{adjustwidth}{2cm}{}}{\end{adjustwidth}}
-		\addcontentsline{ldf}{figure}{0}%
-		\begin{slide_env}}
-		{\end{slide_env}
-	}
-
-%%% Conseils
-\mdfdefinestyle{s_conseil}{%
-	linecolor=orange_f!,
-	outerlinewidth=3pt,%
-	frametitlerule=false,
-	topline=false,
-	bottomline=false,
-	rightline=false,
-	backgroundcolor=orange_c,
-	innertopmargin=8pt,
-	roundcorner=0pt,
-	nobreak=true,
-	fontcolor=orange_f
-}
-\newmdenv[style=s_conseil]{conseil_env}
-\newenvironment{conseil}
-{%\stepcounter{exa}%
-	\addcontentsline{ldf}{figure}{0}%
-	\begin{conseil_env}\textbf{Conseil :}}
-	{\end{conseil_env}
-	}
-
-%%% Remarque
-\mdfdefinestyle{s_remarque}{%
-	linecolor=green_f!,
-	outerlinewidth=3pt,%
-	frametitlerule=false,
-	topline=false,
-	bottomline=false,
-	rightline=false,
-	backgroundcolor=green_c,
-	innertopmargin=8pt,
-	roundcorner=0pt,
-	nobreak=true,
-	fontcolor=green_f
-}
-\newmdenv[style=s_remarque]{remarque_env}
-\newenvironment{remarque}
-{%\stepcounter{exa}%
-	\addcontentsline{ldf}{figure}{0}%
-	\begin{remarque_env}\textbf{Remarque :}}
-	{\end{remarque_env}
-	}
-	
-%%% Document
-\mdfdefinestyle{s_doc}{%
-	linecolor=bleu_f!,
-	outerlinewidth=1pt,%
-	frametitlerule=false,
-	topline=true,
-	bottomline=true,
-	rightline=true,
-	backgroundcolor=white,
-	innertopmargin=8pt,
-	roundcorner=0pt,
-	nobreak=true,
-	fontcolor=black
-}
-\newmdenv[style=s_doc]{doc_env}
-\newenvironment{doc}
-{%\stepcounter{exa}%
-	\addcontentsline{ldf}{figure}{0}%
-	\begin{doc_env}\textbf{Document}}
-	{\end{doc_env}
-	}
-	
-%%% Document
-\mdfdefinestyle{s_bframe}{%
-	linecolor=bleu_f!,
-	outerlinewidth=1pt,%
-	frametitlerule=false,
-	topline=true,
-	bottomline=true,
-	rightline=true,
-	backgroundcolor=white,
-	innertopmargin=8pt,
-	roundcorner=0pt,
-	nobreak=true,
-	fontcolor=black
-}
-\newmdenv[style=s_bframe]{bframe_env}
-\newenvironment{bframe}
-{%\stepcounter{exa}%
-	\addcontentsline{ldf}{figure}{0}%
-	\begin{bframe_env}}
-	{\end{bframe_env}
-	}
-	
-%%% Objectif
-\mdfdefinestyle{s_objectif}{%
-	linecolor=red_f!,
-	outerlinewidth=3pt,%
-	frametitlerule=false,
-	%topline=false,
-	%bottomline=false,
-	%rightline=false,
-	backgroundcolor=white,
-	innertopmargin=8pt,
-	roundcorner=0pt,
-	nobreak=true,
-	fontcolor=red_f
-}
-\newmdenv[style=s_objectif]{objectif_env}
-\newenvironment{objectif}
-{%\stepcounter{exa}%
-	\addcontentsline{ldf}{figure}{0}%
-	\begin{objectif_env}\centering\LARGE\bf}
-	{\end{objectif_env}
-	}
-
-%%%%% PYTHON
-
-\lstdefinestyle{Python}{
-    language        = Python,
-    basicstyle      = \ttfamily,
-    keywordstyle    = \color{code_keyword},
-    stringstyle     = \color{code_string},
-    commentstyle    = \color{code_comment}\itshape
-}
 
 %%%%% New command
 
