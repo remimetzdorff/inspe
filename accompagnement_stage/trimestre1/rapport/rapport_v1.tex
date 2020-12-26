@@ -1,0 +1,655 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{tikz}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}																				% les maths
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fourier}																					% symboles intégral propre
+\usepackage{graphicx}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}	% les marges
+\usepackage{multicol}																					% pour écrire sur plusieurs colones
+\usepackage[thinspace,thinqspace,amssymb]{SIunits}							% écriture des nombres et unités
+\usepackage{setspace}																				% set space between lines
+\usepackage{array}																						% stretch array lines
+\usepackage[hyphens]{url}
+\usepackage[breaklinks]{hyperref}															% clickable links
+%\usepackage[hyphenbreaks]{breakurl}														% for long urls
+\usepackage{chemfig}																					% pour les formules chimiques
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=red_f,
+    citecolor=bleu_f,
+    filecolor=green_f,
+    urlcolor=bleu_f
+}
+
+\usepackage{xcolor}																			% colors
+\usepackage[framemethod=tikz]{mdframed}									% fancy environments
+
+%%%%%%%%%% graphic charter
+
+\renewcommand{\familydefault}{\sfdefault}												% sans serif font
+
+%%%%% HEADER
+%\pagestyle{fancy}
+%\lhead{\textcolor{gray_f}{Physique-Chimie\\R. METZDORFF}}
+%\chead{\textcolor{gray_f}{Lycée Suzanne Valadon}}
+%\rhead{\textcolor{gray_f}{2020-2021}}
+%\renewcommand{\headrulewidth}{0.4pt}
+%\let\HeadRule\headrule
+%\renewcommand\headrule{\color{gray_f}\HeadRule}
+
+%%%%% COLORS
+\definecolor{gray_f}{RGB}{68,84,106}
+\definecolor{gray_c}{RGB}{214,220,229}
+\definecolor{gray_cc}{RGB}{245,245,245}
+\definecolor{bleu_f}{RGB}{91,155,213}
+\definecolor{bleu_c}{RGB}{222,235,247}
+\definecolor{red_f}{RGB}{204,0,0}
+\definecolor{red_c}{RGB}{245,204,204}
+\definecolor{orange_f}{RGB}{237,125,49}
+\definecolor{orange_c}{RGB}{251,229,214}
+\definecolor{green_f}{RGB}{112,173,71}
+\definecolor{green_c}{RGB}{226,240,217}
+\definecolor{yellow_f}{RGB}{255,192,0}
+\definecolor{yellow_c}{RGB}{255,242,204}
+\definecolor{code_keyword}{RGB}{23,23,139}										% colors for pyhton code
+\definecolor{code_comment}{RGB}{50,137,21}
+\definecolor{code_string}{RGB}{139,139,25}
+\definecolor{red_unilim}{RGB}{166,41,41}
+\definecolor{gray_unilim}{RGB}{78,87,94}
+\definecolor{orange_unilim}{RGB}{209,98,40}
+
+%%%%% NEW ENVIRONMENTS
+
+%%% header
+\mdfdefinestyle{s_head}{%
+	linecolor=red_unilim!,
+	outerlinewidth=3pt,%
+	frametitlerule=false,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	leftline=false,
+	backgroundcolor=red_unilim,
+	innertopmargin=8pt,
+	roundcorner=0pt,
+	nobreak=true,
+	fontcolor=white
+}
+\newmdenv[style=s_head]{header_env}
+\newenvironment{header}
+{%\stepcounter{exa}%
+	\addcontentsline{ldf}{figure}{0}%
+	\begin{header_env}\qquad\Large\bf}
+	{\end{header_env}}
+
+%%%%% New command
+
+\newcommand{\app}{\colorbox{bleu_c}{\textcolor{bleu_f}{APP}}}
+\newcommand{\rea}{\colorbox{yellow_c}{\textcolor{yellow_f}{REA}}}
+\newcommand{\anarai}{\colorbox{green_c}{\textcolor{green_f}{ANA-RAI}}}
+\newcommand{\val}{\colorbox{orange_c}{\textcolor{orange_f}{VAL}}}
+\newcommand{\com}{\colorbox{red_c}{\textcolor{red_f}{COM}}}
+\newcommand{\auto}{\colorbox{white}{\textcolor{black}{AUTO}}}
+\newcommand{\rco}{\colorbox{gray_c}{\textcolor{gray_f}{RCO}}}
+\newcommand{\seconde}{2\textsuperscript{nde}}
+
+
+\bibliographystyle{custom-bib/thesis}
+\usepackage{bibentry}
+\usepackage{pdfpages}
+
+\title{L'expérience de Benjamin Franklin... Et Rayleigh, Pockels, Devaux, et Langmuir}
+\author{Rémi Metzdorff}
+\date{\today}
+
+\begin{document}
+
+%\maketitle
+
+\begin{header}
+\begin{minipage}{0.55\textwidth}
+Rapport de Master 2
+\end{minipage}
+\begin{minipage}{0.38\textwidth}
+\href{https://www.unilim.fr/}{\includegraphics[scale=1]{logo.png}}
+\end{minipage}
+\end{header}
+
+\vspace{30pt}
+\begin{spacing}{1.2}
+{\bf
+\begin{Large}
+\noindent
+\textcolor{gray_unilim}{INSPE Académie de Limoges}
+\end{Large}
+
+\begin{large}
+\noindent
+\textcolor{gray_unilim}{Métiers de l'enseignement, de l'éducation et de la formation}
+
+\noindent
+\textcolor{orange_unilim}{Master MEEF Second degré}
+
+\noindent
+\textcolor{orange_unilim}{Professeur de Physique et de Chimie}
+\end{large}
+}
+
+\vspace{20pt}
+
+\noindent
+\textcolor{gray_unilim}{2020--2021}
+
+\vspace{40pt}
+\begin{large}
+\bf
+\noindent
+\textcolor{orange_unilim}{Suivi de stage S3}
+
+\vspace{150pt}
+\noindent
+\textcolor{gray_unilim}{Rémi Metzdorff}
+
+\noindent
+\textcolor{orange_unilim}{Lycée Suzanne Valadon}
+\end{large}
+\end{spacing}
+
+\vfill
+
+\hfill
+\includegraphics[scale=1]{logo_bottom.png}
+
+\thispagestyle{empty}
+
+\newpage
+
+\tableofcontents
+\newpage
+
+\section*{Introduction}
+\addcontentsline{toc}{section}{Introduction}
+
+Ce rapport présente la préparation d'une séance autour de l'expérience historique de Benjamin Franklin et de son interprétation par lord Rayleigh en vue de déterminer la taille d'une molécule.
+Elle est prévue pour des élèves de seconde en demie-classe sur un créneau de TP d'une heure et vingt cinq minutes.
+
+Pour cette année de stage, je suis affecté au lycée Suzanne Valadon à Limoges.\footnote{Lycée d'enseignement général et technologique Suzanne Valadon
+
+39, rue François Perrin -- 87000 Limoges.
+
+Téléphone : 05 55 45 56 00
+
+E mail : ce.0870019y@ac-limoges.fr
+
+Site internet : \href{http://www.lyc-valadon.ac-limoges.fr/}{http://www.lyc-valadon.ac-limoges.fr/}.}
+Avoir avoir présenté l'organisation du lycée et ma situation en tant qu'enseignant stagiaire, c'est l'organisation de la séance qui sera détaillée.
+
+\section{Le lycée Suzanne Valadon}
+
+\subsection{Formations proposées}
+
+Le lycée Suzanne Valadon est un établissement qui propose plusieurs formations.
+C'est un lycée d'enseignement :
+\begin{itemize}
+\item[•] général : \hfill \textbf{354 élèves}
+\begin{itemize}
+\item 6 classes de secondes ;
+\item 3 classes de premières ;
+\item 3 classes de terminales.
+\end{itemize}
+\item[•] technologique (sciences et technologies de la santé et du social ou ST2S et sciences et technologies du management et de la gestion ou STMG) : \hfill \textbf{379 élèves}
+\begin{itemize}
+\item 4 classes premières ST2S et 2 classes de premières STMG ;
+\item 4 classes terminales ST2S et 3 classes de terminales STMG.
+\end{itemize}
+\item[•] professionnel (accompagnement, soins et services à la personne ou ASSP) : \hfill \textbf{162 élèves}
+\begin{itemize}
+\item 3 classes de secondes ;
+\item 3 classes de premières ;
+\item 3 classes de terminales.
+\end{itemize}
+\end{itemize}
+La filière générale est relativement récente dans l'établissement.
+Elle propose les enseignements de spécialité suivants : 
+\begin{itemize}
+\item arts -- arts plastiques ;
+\item arts -- danse ;
+\item histoire géographie, géopolitique et sciences politiques ;
+\item humanités, littérature et philosophie ;
+\item mathématiques ;
+\item physique chimie ;
+\item sciences économiques et sociales ;
+\item sciences de la vie et de la terre.
+\end{itemize}
+
+L'établissement propose également plusieurs formations post-bac :
+\begin{itemize}
+\item[•] 6 brevets de technicien supérieur ou BTS : \hfill \textbf{408 étudiants}
+\begin{itemize}
+\item gestion de la PME PMI ;
+\item support à l'action managériale ;
+\item comptabilité et gestion ;
+\item management commercial opérationnel ;
+\item services informatiques aux organisations ;
+\item économie sociale et familiale.
+\end{itemize}
+\item[•] 1 diplôme de technicien supérieur en imagerie médicale et radiologie thérapeutique ou DTS IMRT ; \hfill \textbf{52 étudiants}
+\item[•] 2 classes préparatoires au diplôme de comptabilité de gestion ou DCG et diplôme supérieur de comptabilité et de gestion ou DSCG ; \hfill \textbf{108 étudiants}
+\item[•] 1 diplôme d'état conseiller en économie sociale et familiale ou DCESF. \hfill \textbf{24 étudiants}
+\end{itemize}
+
+Enfin, l'établissement héberge le micro-lycée Utrillo : \hfill \textbf{14 élèves}
+\begin{itemize}
+\item[•] 1 classe de premières ;
+\item[•] 1 classe de terminales.
+\end{itemize}
+
+Il s'agit donc d'un établissement de taille assez conséquente puisqu'il rassemble environ 1\,500 élèves et étudiants.
+
+\subsection{Organisation du lycée}
+
+Le fonctionnement du lycée est assuré par l'ensemble de son personnel, soit près de 500 personnes, organisé autour de Madame la Proviseur Nadège Vergnaud et Monsieur le Proviseur-Adjoint Nicolas Chaume (Fig~\ref{fig:organigramme}, Annexe~\ref{ann:organigramme}).
+Chacun a un rôle et des responsabilités bien définis \cite{Jourdan2016} :
+\begin{itemize}
+\item[•] la Proviseur est le représentant de l'état au sein de l'établissement et c'est elle qui représente l'établissement.
+Elle est la représentante juridique.
+Ses missions sont multiples : organisation, gestion, contrôle, etc.
+\item[•] le Proviseur-Adjoint est le principal conseiller du chef d'établissement.
+Son rôle est particulièrement important dans l'organisation quotidienne de la vie de l'établissement.
+C'est notamment lui qui est en charge de l'organisation des emplois du temps.
+\item[•] la gestionnaire est en charge du budget de l'établissement.
+Elle est en charge de la gestion des personnels mais aussi des équipements du lycée.
+\item[•] les conseillers principaux d'éducation (CPE) sont en charge du suivi et de l'accompagnement des élèves, notamment en gérant les absences et retards, et prennent part à la vie lycéenne.
+Ils gèrent les assistants d'éducation (AED) qui s'assurent du bon déroulement de la vie scolaire.
+\item[•] le pôle de soutien regroupe l'ensemble des personnels en charge notamment de l'accompagnement des élèves en difficulté.
+Par exemple, les accompagnants des élèves en situations de handicap aident ces élèves et favorisent leur autonomie.
+\item[•] le personnel technique et ouvriers de services (TOS) regroupe environ trente personnes en charge de l'entretien des infrastructures de l'établissement et du fonctionnement du restaurant scolaire.
+\item[•] finalement les enseignants accompagnent les élèves dans leurs apprentissages.
+L'établissement compte 137 enseignants.
+\end{itemize}
+
+Le lycée Suzanne Valadon a aussi la particularité d'héberger le pôle sanitaire et social du Greta du Limousin (\href{https://greta-du-limousin.fr/tagged/accueil}{https://greta-du-limousin.fr/tagged/accueil}).
+Les groupements d'établissements (Greta) sont les structures de l'éducation nationale qui organisent des formations pour adultes dans de nombreux domaines professionnels. 
+
+\subsection{Situation en tant que stagiaire}
+
+Cette année, je suis donc stagiaire en responsabilité pour la discipline sciences physiques et chimiques au lycée Suzanne Valadon de Limoges.
+Je m'occupe de l'enseignement de physique-chimie pour deux classes de secondes (\seconde1 et \seconde2) pour un total de 69 élèves (34 et 35).
+Les cours en classe entière se font en séance d'une heure (une heure toutes les semaines et une heure en quinzaine, c'est-à-dire une semaine sur deux).
+Chaque classe est divisée en deux groupes pour les séances de travaux pratiques d'une heure et demie.
+J'assure donc un service de neuf heures réparties sur les trois premiers jours de la semaine (Annexe~\ref{ann:edt}).
+
+Les élèves ont des profils variés et souhaitent s'orienter vers différentes filières :
+\begin{itemize}
+\item[•] générale : 23 élèves soit environ \unit{33}{\%} dont 11 élèves soit \unit{16}{\%} souhaitent poursuivre avec la spécialité physique-chimie ;
+\item[•] ST2S : 11 élèves soit environ \unit{16}{\%} ;
+\item[•] STMG : 10 élèves soit environ \unit{14}{\%} ;
+\item[•] STD2A : 3 élèves soit environ \unit{4}{\%} ;
+\item[•] technologique : 2 élèves soit environ \unit{3}{\%} ;
+\item[•] orientation non déterminée en fin de premier trimestre : 20 élèves soit environ \unit{29}{\%}.
+\end{itemize}
+
+\section{Présentation de la séance}
+
+La séance présentée dans ce rapport est prévue pour le groupe 1 de la classe de seconde 1 et doit être réalisée le lundi 7 décembre 2020 de 14h50 à 16h20 sur un créneau de TP, alors qu'une visite conjointe de mes tuteurs terrains et INSPE est prévue.
+Durant cette séance, les élèves seront amenés à travailler sur une tâche complexe, inspirée de l'expérience historique réalisée par Benjamin Franklin au XVIII\textsuperscript{ème} siècle alors qu'il versait une cuillère d'huile dans un lac près de Londres \cite{Franklin1773a}.
+Il s'agit d'une approche documentaire, éventuellement mais pas nécessairement étayée par des mesures expérimentales pour déterminer certaines grandeurs non précisées dans le sujet.
+L'objectif n'est pas de reproduire l'expérience comme l'ont fait plusieurs scientifiques bien après Franklin, mais seulement d'exploiter son expérience pour en déduire la taille d'une molécule en reproduisant le raisonnement de lord Rayleigh \cite{Rayleigh1899}.
+
+Le sujet élève ainsi qu'une proposition de correction sont présentés en annexe (Annexes~\ref{ann:sujet} et \ref{ann:corr}).
+
+\subsection{Contexte de la séance}
+
+\subsubsection{Dans la progression}
+
+Cette séance s'inscrit dans la continuité du chapitre intitulé \og Du macroscopique au microscopique \fg{} où l'on passe d'une description de la matière constituée d'espèces chimiques comme on l'a vu dans les premiers chapitres \og Corps purs et mélanges \fg{} et \og Solutions aqueuses \fg{}, à une description particulaire où l'on s'intéresse particulièrement aux entités chimiques.
+Située à la fin du chapitre, elle arrive juste avant celui sur l'atome et son noyau.
+
+\subsubsection{Dans le programme}
+
+L'activité proposée pendant la séance rentre dans le cadre de la première partie du thème \og Constitution et transformations de la matière \fg{} et plus particulièrement au début de l'étude de la \og Modélisation de la matière à l'échelle microscopique \fg{}.
+Voici l'extrait du programme concerné :
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Du macroscopique au} 			& Définir une espèce chimique comme une collection d'un \\
+\textbf{microscopique, de l'espèce}	& nombre très élevé d'entités identiques. \\
+\textbf{chimique à l'entité.}					& \\
+																& Exploiter l'électroneutralité de la matière pour associer\\
+Espèces moléculaires, espèces		& des espèces ioniques et citer des formules de composés\\
+ioniques, électroneutralité de la			& ioniques.\\
+matière au niveau	 macroscopique.	& \\
+\hline
+Entités chimiques : molécules,			& Utiliser le terme adapté parmi molécule, atome, anion et \\
+atomes, ions.											& cation pour qualifier une entité chimique à partir d'une \\
+																& formule chimique donnée. \\
+\hline
+\end{tabular}
+\end{center}
+et on peut lire plus loi la capacité exigible \og Citer l'ordre de grandeur de la valeur de la taille d'un atome \fg{}.
+Le cheminement suggéré dans le programme est ici suivi à la lettre puisque cette expérience nécessite de décrire l'huile d'olive\footnote{Que l'on assimilera à de la trioléine, puisqu'il s'agit de l'espèce largement majoritaire dans l'huile d'olive.} dans un premier temps comme une espèce chimique puis de s'intéresser aux entités chimiques qui la composent.
+On part d'un volume macroscopique d'une espèce pour en déduire la taille microscopique des entités correspondantes.
+
+S'agissant d'une tâche complexe, l'ensemble des compétences de la démarche scientifique sont mobilisées.
+Toutefois, j'ai pris le parti de n'en cibler que certaines pour les évaluer lors de la séance car elles me paraissaient particulièrement mobilisées.
+
+Enfin, cette activité est évidemment une occasion de suivre la recommandation générale du programme concernant la \og mise en perspective des savoirs avec l'histoire des sciences \fg{}.
+
+\subsection{Objectifs}
+
+En plus des éléments précédant, l'objectif de cette activité est d'ancrer l'ordre de grandeur des entités microscopiques constituant la matière, idéalement en confrontant les élèves à leurs conceptions initiales.
+Ceci rejoint à la capacité exigible du programme \og Citer l'ordre de grandeur de la valeur de la taille d'un atome \fg{}.
+
+Les objectifs en terme de compétence seront détaillés plus loin dans ce rapport lors de la présentation de l'évaluation des élèves pendant la séance.
+
+\subsection{Prérequis}
+
+Les élèves ont déjà été confrontés à des activités similaires notamment lors des séances de TP, où l'objectif est de répondre à une question plus ou moins ouverte.
+Ce n'est donc pas la première fois qu'ils doivent s'appuyer sur la méthode de résolution dont les étapes sont rappelées dans le sujet.
+Il me parait important que cette méthode, même si elle n'est pas forcément encore maîtrisée par tous les élèves, ne soit pas une découverte pour les élèves et ne les déstabilise pas trop.
+
+Dans le chapitre qui précède, les élèves ont revu les termes molécule et atome, les entités qui composent les espèces chimiques.
+Ce sont déjà des rappels de notions abordées au collège.
+La nature discrète de la matière à l'échelle microscopique est donc supposée connue.
+
+Pour pouvoir rapprocher l'épaisseur du film d'huile de la taille d'une molécule, les élèves doivent je pense avoir une idée correcte de la taille d'un atome, sans quoi le lien entre les calculs suggérés pendant la séance et la réponse à la question peut être vraiment difficile à établir.
+Cette valeur a été donnée dans le cours précédant cette activité.
+Ils ont aussi fait un exercice consistant à estimer la taille du personnage de la vidéo \href{https://youtu.be/oSCX78-8-q0}{A boy and his atom} en comptant les \og atomes \fg{} qui le composent.
+Par analogie, ils peuvent ainsi compter les atomes des chaines carbonées de la trioléine pour émettre leur hypothèse.
+
+La manipulation des puissances de dix ne doit pas être un obstacle majeur lors des applications numériques.
+Ceci a été revu également peu de temps avant l'activité.
+
+Certaines capacités expérimentales sont également requises :
+\begin{itemize}
+\item mesurer un volume à l'aide d'une éprouvette ;
+\item mesurer des distances sur un schéma en s'aidant d'une échelle de longueur.
+\end{itemize}
+
+\subsection{La séance}
+
+\subsubsection{Déroulement de la séance}
+
+\paragraph{Accueil (5')}
+\begin{itemize}
+\item[•] Accueil des élèves, désinfection des mains, placement libre par binôme, \og Bonjour à tous, asseyez-vous. \fg{}
+\item[•] Appel.
+\item[•] Contextualisation : 
+
+\og Rappelez vous le titre du chapitre 3, du macroscopique au microscopique : on part d'une description de la matière à notre échelle pour en venir à l'étude des particules qui composent la matière.
+Avec l'activité d'aujourd'hui c'est exactement le chemin que l'on va suivre : on va interpréter une expérience macroscopique, à notre échelle, pour déterminer la taille d'une molécule d'huile.
+On va essayer de répondre à la question : Quelle est la taille d'une molécule d'huile ?\fg{}
+(la question est écrite au tableau).
+\end{itemize}
+
+\paragraph{Présentation de la séance (3')}
+\begin{itemize}
+\item[•]  \og Tout le monde écoute, je vous donne les consignes générales.\fg{}
+
+\item[•] Consignes :
+\begin{itemize}
+\item Objectif : répondre à la question \og Quelle est la taille d'une molécule d'huile ? \fg{}
+\item \og Vous rédigerez un compte-rendu chacun, j'en ramasserai un par groupe au hasard à la fin. \fg{}
+\item \og Servez-vous de l'aide à la rédaction du compte-rendu rappelée dans le sujet.
+La première étape sera comme d'habitude de donner votre hypothèse \og Je pense qu'une molécule d'huile mesure ... car ... \fg{}
+\end{itemize}
+
+\item[•] \og Est-ce qu'il y a des questions ?
+C'est bon pour tout le monde ?
+
+Vous avez quinze minutes pour parcourir le sujet et formuler votre hypothèse.
+Appelez moi quand c'est fait.
+
+Je vous distribue le sujet et c'est parti.
+\fg{}
+\end{itemize}
+
+\paragraph{Préparer la fiche de notation avec le nom des binômes (Annexe~\ref{ann:suivi}).}
+
+\paragraph{Au bout de quinze minutes, vérifier les hypothèses, puis aide en fonction de chaque groupe.}
+
+\paragraph{Première aide}
+\begin{itemize}
+\item[•] Coup de pouce : Commencez par déterminer le volume d'une cuillère à café.
+\item[•] Aide : Quelle verrerie peut-on utiliser pour mesurer un volume ?
+\item[•] Aide : Mesure le volume d'une cuillère à café d'huile avec une éprouvette.
+\item[•] Aide : La cuillère à café utilisée par Franklin contenait \unit{5}{mL} d'huile.
+\end{itemize}
+
+\paragraph{Deuxième aide}
+\begin{itemize}
+\item[•] Coup de pouce : Dessinez la tache d'huile en 3D puis formule du volume du cylindre.
+\item[•] Aide : À quoi correspondent les différentes grandeurs dans la formule, lesquelles sont connues ?
+\item[•] Aide : Mesure l'aire sur le schéma
+\item[•] Aide : L'aire de la flaque est \unit{2000}{m\squared}
+\end{itemize}
+
+\paragraph{Troisième aide}
+\begin{itemize}
+\item[•] Coup de pouce : Pourquoi la tache arrête-t-elle de s'étendre ?
+\item[•] Aide : Ça vous semble normal de trouver un chiffre aussi petit ?
+\item[•] Aide : Le professeur verse des haricots sur la table
+\item[•] Aide : L'huile forme une couche haute comme une seule molécule
+\end{itemize}
+
+\paragraph{Nettoyage (5' avant la fin de séance)}
+
+\paragraph{Ramasser les compte-rendus}
+ 
+\paragraph{Fin de la séance}
+
+\subsubsection{Matériel}
+
+Le matériel est à disposition des élèves mais pas directement sur leur paillasse :
+\begin{itemize}
+\item[•] bécher \unit{100}{mL} ;
+\item[•] éprouvettes graduées \unit{10}{mL} et plus ;
+\item[•] balance ;
+\item[•] cuillère à café ;
+\item[•] entonnoir ;
+\item[•] eau ;
+\end{itemize}
+
+\subsubsection{Évaluations}
+
+Lors de la séance, l'évaluation est portée sur trois compétences en particulier : analyser-raisonner (\anarai{}), réaliser (\rea{}) et valider (\val{}).\footnote{Puisque l'activité est une tâche complexe, d'autres compétences sont inévitablement mobilisées mais il est possible de les évaluer après la séance sur la base du compte-rendu rédigé par les élèves.
+Ce n'est pas sur celles-ci que l'accent est mis pour cette activité.}
+Le niveau de maîtrise de ces compétences est graduée selon quatre niveaux identifiables d'après l'aide apportée lors de la séance : A (bien maîtrisée), B (maîtrisée), C (insuffisamment maîtrisée) et D (non maîtrisée) (Tab.~\ref{tab:cptces_tp}).
+
+Le compte-rendu est aussi évalué sur la base des compétences mobilisées (Tab.~\ref{tab:cptces_cr}).
+
+\begin{table}[p]
+\center
+\begin{tabular}{l|l|c}
+\textbf{Compétence} & \textbf{Aptitude} / Observable & \textbf{Niveau} \\
+\hline \hline
+\anarai 	& \textbf{Élaborer un protocole qui répond à la question} 	& \\
+				& L'élève mesure le volume de 10 cac				 						& A+ \\
+				& L'élève mesure le volume d'une cac 									& A \\
+				& Aide : Avec quelle verrerie peut-on mesurer un volume ?	& B \\
+				& Aide : Mesure le volume d'une cac d'huile avec une éprouvette & C \\
+				& Aide : Une cac fait 5 mL 															& D \\
+\hline
+\rea			& \textbf{Faire des observations utiles à l'activité}					& \\
+				& L'élève réalise la mesure de l'aire sur le schéma				& A \\
+				& Aide : Dans la formule, quelles sont les valeurs connues ? & B \\
+				& Aide : Mesure l'aire sur le schéma											& C \\
+				& Aide : L'aire de la flaque est \unit{2000}{m\squared}			& D \\
+\hline
+\val			& \textbf{Avoir un regard critique sur ses résultats}				& \\
+				& L'élève fait le lien avec son hypothèse									& A \\
+				& Aide : Ça vous semble normal de trouver un chiffre aussi petit ? & B \\
+				& Aide : Le professeur verse des haricots sur la table			& C \\
+				& Aide : L'huile forme une couche haute comme une seule molécule & D \\
+\end{tabular}
+\caption{Observables utilisées pour l'évaluation du niveau de maîtrise des compétences travaillées lors de la séance.
+\anarai{} : analyser-raisonner.
+\rea{} : réaliser.
+\val{} : valider.}
+\label{tab:cptces_tp}
+\end{table}
+
+\begin{table}
+\center
+\begin{tabular}{l|l}
+\textbf{Compétence} & \textbf{Aptitude} \\
+\hline \hline
+\anarai 	& \textbf{Faire une hypothèse, la justifier} \\
+\hline
+\rea			& \textbf{Réaliser un schéma correspondant à la manipulation réalisée} \\
+				& \textbf{Effectuer des procédures classiques (calculs, etc.)} \\
+\hline
+\val			& \textbf{Dire si mes résultats sont en accord avec ceux attendus} \\
+ 				& \textbf{Avoir un regard critique sur ses résultats} \\
+\hline
+\com		& \textbf{Rendre compte de façon écrite ou orale}
+\end{tabular}
+\caption{Compétences mobilisées et évaluées lors de la rédaction du compte-rendu.
+\anarai{} : analyser-raisonner.
+\rea{} : réaliser.
+\val{} : valider.
+\com{} : communiquer.}
+\label{tab:cptces_cr}
+\end{table}
+
+\subsection{Analyse a priori}
+
+\subsubsection{Conceptions initiales des élèves}
+
+Plusieurs conceptions initiales des élèves peuvent intervenir lors de la séance.
+Les premières portant sur la structure de la matière ont déjà été identifiée dans des contextes similaires \cite{Bain1985} :
+\begin{itemize}
+\item[•] absence de structure au niveau microscopique ;
+\item[•] \emph{continuité de la matière ;}
+\item[•] ponctuation de la matière ;
+\item[•] continuité et discontinuité.
+\end{itemize}
+En particulier, l'hypothèse selon laquelle la matière est continue doit avoir été abordée à plusieurs reprises et ne devrait pas poser de grosses difficultés.
+
+Certaines portent en particulier sur la taille des molécules \cite{Griffiths1992} :
+\begin{itemize}
+\item[•] molécules \og macroscopiques \fg{} : la taille de la pointe d'un crayon, d'un point, d'une particule de poussière, etc. 
+\item[•] c'est la plus petite entité indivisible ;
+\end{itemize}
+ou de celle des atomes :
+\begin{itemize}
+\item[•] ils sont suffisamment grand pour être vus au microscope (optique je suppose) ;
+\item[•] les atomes sont plus grands que les molécules.
+\end{itemize}
+
+D'autres conceptions sont identifiées couramment semble-t-il par les enseignants :
+\begin{itemize}
+\item[•] difficulté à discerner atome de cellule ;
+\item[•] l'atome et la cellule ont les mêmes dimensions.
+\end{itemize}
+
+J'ai déjà pu constaté certaines de ces conceptions lors d'une activité où les élèves devaient classer par taille différentes éléments.
+Il est effectivement apparu qu'en dessous du diamètre d'un cheveu, le classement est régulièrement faux et les inversions atomes/molécules/cellules sont relativement fréquentes.
+
+\begin{figure}
+\center
+\chemfig[angle increment=30,atom sep=24pt]{
+-[5]-[-5]-[5]-[-5]-[5]-[-5]-[5]-[3]=[1]-[-1]-[1]-[-1]-[1]-[-1]-[1]-[-1]-[1](=[3]O)-[-1]O-[1]-[-1](-[-3]-[-5]O-[-3](=[-5]O)-[-1]-[1]-[-1]-[1]-[-1]-[1]-[-1]-[1]=[-1]-[-3]-[-5]-[5]-[-5]-[5]-[-5]-[5]-[-5])-[1]O-[-1](=[-3]O)-[1]-[-1]-[1]-[-1]-[1]-[-1]-[1]-[-1]=[1]-[3]-[5]-[-5]-[5]-[-5]-[5]-[-5]-[5]
+}
+\caption{Formule topologique de la trioléine, de formule brute $\text{C}_\text{57}\text{H}_\text{104}\text{O}_\text{6}$.}
+\label{fig:trioleine}
+\end{figure}
+
+\subsubsection{Sur le déroulement de la séance}
+
+Pour cette séance, j'ai choisi de faire travailler les élèves par binôme.
+Je pense qu'il est important que les élèves aient l'occasion d'échanger pendant la séance mais j'ai souhaiter conserver des petits groupes pour tenir comptes des contraintes sanitaires liées à la covid-19.
+L'activité est toutefois proposée au quatre demis-groupes des deux classes de secondes et des modifications seront testées lors des différentes séances.
+
+La formulation de l'hypothèse concernant la taille d'une molécule d'huile peut être difficile car les élèves ne connaissent a priori pas l'allure de cette molécule, ni même la composition de l'huile.
+On peut alors montrer une molécule d'oléine (aide 5 en annexe~\ref{ann:aides}) sous la forme d'une aide ponctuelle apportée au besoin.
+La formule topologique de cette molécule (Fig.~\ref{fig:trioleine}) permet de mieux mettre en valeur les chaines carbonées qui donnent réellement sa taille à la molécule, mais cette représentation n'a jamais encore été utilisée par les élèves et ne sera abordée que plus tard.
+Pour faciliter la représentation dans l'espace de cette molécule, on peut construire un modèle moléculaire en se limitant par exemple à une molécule de glycérol et en indiquant qu'il ne s'agit que d'une partie de la trioléine (car il faudrait tout de même quelques boîtes pour reproduire entièrement la trioléine !).
+On pourrait aussi utiliser un modèle informatique et ainsi \og manipuler \fg{} la molécule avec une application comme JSmol par exemple.\footnote{La base de donnée \href{https://pubchem.ncbi.nlm.nih.gov/}{https://pubchem.ncbi.nlm.nih.gov/} est très utile pour accéder à des modèles déjà réalisés.}
+La dimension d'un atome ayant été donnée en cours, on peut alors s'attendre à ce que l'élève compte les atomes qui composent la \og molécule d'huile \fg{} pour estimer sa taille.
+Il se pourrait alors que la forme allongée de la molécule induise un questionnement sur la bonne dimension à prendre en compte.
+On peut différer la réponse à cette question en attendant de voir ce que donne les résultats des mesures et calculs et en reparler à la fin du TP en s'inspirant des calculs réalisés par Langmuir~\cite{Langmuir1917} : \og D'après vous, comment s'orientent les molécules à la surface de l'eau ? \fg{}.
+
+Après la formulation de l'hypothèse, il est vraisemblable que les élèves soient déstabilisés par le sujet et ne sachent pas comment utiliser les documents pour avancer.
+On peut alors apporter une aide sous la forme d'un coup de pouce : \og Déterminer le volume d'une petite cuillère \fg{}.
+Ici le choix du verbe \emph{déterminer} me parait plus judicieux que \emph{mesurer} qui limiterait le choix des chemins de résolutions.
+On peut en effet s'attendre à ce que l'élève connaisse la valeur du volume d'une petite cuillère, ce qui relève plutôt de la compétence s'approprier et plus particulièrement de la capacité : évaluer quantitativement les grandeurs physiques inconnues et non précisées.
+Ceci est d'autant plus probable que quelques semaines auparavant, les élèves ont fait un exercice leur demandant de relier différents volumes à la contenance de plusieurs récipients, dont une cuillère à café.
+Si la valeur est bonne et que l'élève termine l'activité trop rapidement, on peut toujours l'orienter sur la mesure du volume de la cuillère en l'encourageant à vérifier la valeur utilisée.
+Pour la mesure du volume de la cuillère à café, on peut s'attendre à deux méthodes : mesure \og directe \fg{} à l'aide d'une éprouvette graduée ou mesure \og indirecte \fg{} à l'aide d'une balance en passant par la masse volumique.\footnote{La masse volumique a été traitée lors du premier chapitre de l'année.}
+Pour ne pas limiter les options des élèves, ils disposent de balances et d'éprouvettes graduées.
+Dans les deux cas, l'idée de mesurer le volume de plusieurs cuillerées pour diminuer les incertitudes de mesure pourra être valorisée.
+
+Après avoir déterminé le volume de la petite cuillère, si le groupe est bloqué, il convient d'attirer rapidement l'attention des élèves sur la deuxième grandeur inconnue du sujet : la surface du film d'huile.
+\og Dans le sujet, on parle aussi d'une surface : déterminez la valeur de cette surface.\fg{} 
+Le calcul de la surface du disque ne doit pas poser problème dans le deuxième cas : la formule est donc rappelée au besoin sans attendre (aide 3 en annexe~\ref{ann:aides}).
+Le schéma du document 2 peut induire un biais : l'étendue de la tache d'huile est simplement repérable par l'absence de vague et pas par sa couleur.
+L'épaisseur finale de l'ordre du nanomètre est beaucoup trop faible pour qu'on puisse la repérer optiquement.
+
+Une fois les deux grandeurs déterminées, le lien entre les deux n'est pas forcément limpide.
+Les considérations dimensionnelles dépassent pour l'instant les élèves.
+Pour aider à faire ce lien, la formule donnant le volume du cylindre est donnée (aide 4 en annexe~\ref{ann:aides}).
+L'attention est portée sur les unités pour éviter de diviser des millilitres par des mètres carrés.
+
+Finalement, le lien entre l'aspect réellement macroscopique de cette expérience et son interprétation microscopique est sans doute une des principales difficultés de cette activité.
+Si le lien entre espèce chimique et entité chimique présent dans les programmes a été abordé en cours, il reste flou pour les élèves et il est probable que cette transition gêne la conclusion de l'activité.
+Le dernier coup de pouce est apporté en ce sens, afin de pousser l'élève à s'interroger sur le résultat obtenu.
+
+\section*{Conclusion}
+\addcontentsline{toc}{section}{Conclusion}
+
+Voilà voilà...
+Toute ressemblance avec un autre rapport serait purement fortuite.
+
+\newpage
+\bibliography{biblio.bib}
+\addcontentsline{toc}{section}{Références}
+
+\newpage
+\appendix
+
+\section{Organigramme du lycée}
+\label{ann:organigramme}
+
+\begin{figure}[h]
+\center
+\includegraphics[width=\textwidth]{organigramme.pdf}
+\caption{Organigramme du lycée Suzanne Valadon.}
+\label{fig:organigramme}
+\end{figure}
+
+\newpage
+
+\section{Emploi du temps}
+\label{ann:edt}
+
+\includepdf[pages=-, landscape=true]{edt_annuel.pdf}
+
+\section{Sujet élève}
+\label{ann:sujet}
+
+\includepdf[pages=-]{tp_franklin_v3.pdf}
+
+\section{Aides}
+\label{ann:aides}
+
+\includepdf[pages=-]{tp_franklin_aides.pdf}
+
+\section{Proposition de correction}
+\label{ann:corr}
+
+\includepdf[pages=-]{tp_franklin_corr.pdf}
+
+\section{Fiche de suivi des élèves pendant la séance}
+\label{ann:suivi}
+
+\includepdf[pages=-]{tp_franklin_prof_suivi-604.pdf}
+
+
+\end{document}
