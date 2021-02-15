@@ -1,0 +1,4 @@
+Galvanomètre voltmètre :
+ - mesure de résistance entre toutes les bornes du multimètre : OL pour toutes les combinaisons
+ - la partie galvanomètre fonctionne
+ - la résistance aux bornes de chacune des résistances est infinie : elles sont cassées ?
