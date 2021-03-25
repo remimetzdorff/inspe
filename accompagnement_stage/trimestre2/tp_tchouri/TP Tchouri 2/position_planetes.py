@@ -26,14 +26,14 @@ plt.plot([0],[0], "*", color="gold", markersize=20, label="Soleil")
 plt.plot(x_terre, y_terre, "o", color="blue", label="Terre")
 
 # TCHOURI
-#plt.plot(x_tchouri, y_tchouri, "o", color="black", label="Tchouri")
+plt.plot(x_tchouri, y_tchouri, "o", color="black", label="Tchouri")
 
 # JUPITER
-#plt.plot(x_jupiter, y_jupiter, "o", color="pink", label="Jupiter")
+plt.plot(x_jupiter, y_jupiter, "o", color="red", label="Jupiter")
 
 # Changement d'échelle pour les axes (modification des limites du graphe)
-plt.xlim(-1.5,1.5)
-plt.ylim(-1.5,1.5)
+plt.xlim(-6,6)
+plt.ylim(-6,6)
 
 # Titre, nom des axes et légende
 plt.title("Évolution de la position de quelques objets du système solaire")
@@ -43,4 +43,4 @@ plt.legend(loc = "upper left")
 fig.axes[0].set_aspect("equal")
 plt.show()
 
-plt.savefig("step1.png", bbox_inches="tight", dpi=200)
+plt.savefig("step5.png", bbox_inches="tight", dpi=200)
