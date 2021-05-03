@@ -1,0 +1,6 @@
+2021-04-30
+
+MSP
+Mettre le laser face à un mur ?
+Pourquoi pas faire tourner le laser. Ou le rapporteur avec le Plexiglas ?
+Amplitude = 6 mV ? 3*20/5 = 12 mV
