@@ -32,18 +32,15 @@
 \usepackage{xcolor}																			% colors
 \usepackage[framemethod=tikz]{mdframed}									% fancy environments
 
-\usepackage{siunitx}																					% écriture des nombres et unités
+\usepackage{siunitx}        																% écriture des nombres et unités
 \sisetup{
 locale = FR,
-input-product=*, % enable to type equation as in Python
 per-mode = symbol,%reciprocal,
 exponent-product = \times, % replace by \cdot if desired
-quotient-mode = fraction,
-scientific-notation=false, % if desired
+exponent-mode=input,
 separate-uncertainty = true,
 output-complex-root = j, % or i
 number-unit-product = \, ,
-load-configurations = abbreviations
 }
 
 %%%%%%%%%% graphic charter
@@ -126,6 +123,9 @@ load-configurations = abbreviations
 \renewcommand{\d}{\mathrm{d}}
 \newcommand{\cad}{c'est-à-dire}
 
+\usepackage[european, straightvoltages, RPvoltages]{circuitikz}
+\usetikzlibrary{babel}
+
 \begin{document}
 
 \include{front_page}
@@ -157,7 +157,7 @@ Finalement, une expérience simple impliquant les deux instruments est présent�
     \caption{
     Le \og cœur \fg{} du galvanomètre.
     Le champ magnétique est produit par l'aimant permanent torique.
-    La cadre mobile, situé dans l'entrefer de l'aimant, est caché derrière un ressort en spirale qui maintient l'aiguille au centre du cadrant en l'absence de courant électrique.
+    La cadre mobile, situé dans l'entrefer de l'aimant, est caché derrière un ressort en spirale qui maintient l'aiguille au centre du cadran en l'absence de courant électrique.
     Les deux fils situés de part et d'autre du cadre alimentent la bobine.
     Le fil fin en forme de ressort est propre à l'ampèremètre : il n'est pas indispensable au fonctionnement du galvanomètre et son rôle sera expliqué plus tard.}
     \label{fig:principe}
@@ -271,7 +271,7 @@ et on le projette selon $\ez$ :
 \end{equation}
 
 Cette équation comprend un terme en $\sin\theta$ : elle n'est pas linéaire et ne pourra pas être résolue analytiquement.
-Pour simplifier on peut réaliser des approximations supplémentaires en supposant que la déviation reste faible, \cad{} que $\theta$ reste \og proche \fg{} de \SI{\pi/2}{\radian}.
+Pour simplifier on peut réaliser des approximations supplémentaires en supposant que la déviation reste faible, \cad{} que $\theta$ reste \og proche \fg{} de $\tfrac{\pi}{2}$.
 On peut alors linéariser l'équation~\ref{eq:mvt} pour obtenir l'équation
 \begin{equation}
     J\ddot{\theta} = -\mu B - k\left(\theta-\frac{\pi}{2}\right) - \alpha\dot{\theta}.
@@ -367,13 +367,13 @@ La plage de déviations matérialisée en jaune pâle représente la gamme de va
 \end{figure}
 
 Des mesures rapides effectuées sur les différents appareils n'ont cependant pas montré d'écarts significatifs pour les déviations les plus élevées (Fig~\ref{fig:galva_lin}).
-\footnote{La linéarité des graduations sur les cadrants des instruments a été vérifiée à l'aide d'un réglet.}
+\footnote{La linéarité des graduations sur les cadrans des instruments a été vérifiée à l'aide d'un réglet.}
 On peut revenir sur les différentes hypothèses utilisées pour établir le modèle précédent :
 \begin{itemize}
 \item uniformité du champ $B$ : cette approximation reste valable tant que l'on reste à proximité de l'axe de l'entrefer de l'aimant permanent (Fig.~\ref{fig:entrefer}).
 Cependant, puisque la taille du cadre mobile est comparable à celle de l'entrefer, pour des déviations importantes, la bobine explore des régions sensiblement éloignées de l'axe de l'entrefer.
 À mesure que l'on s'éloigne de cet axe, le champ magnétique diminue.
-Quand l'intensité $I$ est faible, la bobine est proche de l'axe ($\theta\approx\num{\pi/2}$) et elle s'en éloigne quand l'intensité augmente : le couple magnétique devrait donc également diminuer à mesure que la déviation augmente.
+Quand l'intensité $I$ est faible, la bobine est proche de l'axe ($\theta\approx\tfrac{\pi}{2}$) et elle s'en éloigne quand l'intensité augmente : le couple magnétique devrait donc également diminuer à mesure que la déviation augmente.
 Cet effet, qui s'ajoute à la diminution du couple à mesure que le dipôle s'aligne avec le champ, devrait en réalité augmenter la non linéarité de l'affichage : il doit donc être négligeable et l'hypothèse d'un champ magnétique uniforme semble raisonnable ;
 
 \item poids négligeable : dans le cas où l'on devrait considérer le poids de l'aiguille, il faudrait rajouter à l'équation~\ref{eq:mvt} un terme en $\cos\theta$ correspondant au couple du poids, dont la valeur est par ailleurs difficile à estimer sans démonter complètement l'appareil.
@@ -485,7 +485,7 @@ Derrière cet argument de vente percutant se cachent deux vérités :
 \end{figure}
 
 L'ampèremètre auquel on s'intéresse ici était commercialisé par Chauvin \& Arnoux, probablement au cours de la première moitié du XX\textsuperscript{ème} siècle.
-Il s'agit d'un modèle de \SI{25}{cm} de diamètre, qui peut fonctionner quelque soit le sens du courant (continu) et dont le cadrant possède 150 graduations dans chaque sens.
+Il s'agit d'un modèle de \SI{25}{cm} de diamètre, qui peut fonctionner quelque soit le sens du courant (continu) et dont le cadran possède 150 graduations dans chaque sens.
 Bien que ce modèle précis ne soit pas dans le catalogue du fabricant présenté en annexe (Ann.~\ref{ann:catalogue}), on en trouve un modèle très similaire, qui était vendu au prix de 130 francs en 1915, soit environ 360 euros actuels \cite{Alexandre2014}.
 Le galvanomètre est monté sur un support en bois qui le maintien à la verticale.
 
@@ -513,9 +513,9 @@ Une expérience rapide permet de s'assurer qu'il permet de réaliser des mesures
 
 En supposant que le galvanomètre fonctionne toujours comme en sortie d'usine, cette série de mesure permet de comprendre l'échelle de graduation.
 Le coefficient directeur de la droite obtenu lors de l'ajustement des mesures donne \SI{2.74(7)}{graduation\per\milli\ampere}.
-On compare aux valeurs indiqués sur le cadrant : comme le suggère la notice, si la graduation la plus élevée (150) correspond au courant maximal mesurable avec l'instrument ($I_\mathrm{max}=\SI{0.05}{\ampere}$), le coefficient directeur devrait être de \SI{3}{graduation\per\milli\ampere}.
-Ces deux valeurs sont raisonnablement proches à ce stade pour supposer que la dernière graduation correspond à la valeur maximale indiquée sur le cadrant.
-\footnote{La graduation du cadrant en 150 divisions semble être commune à de nombreux modèles commercialisés par Chauvin \& Arnoux, même s'ils proposent d'autres échelles : 100, 125 et 150 divisions.}
+On compare aux valeurs indiqués sur le cadran : comme le suggère la notice, si la graduation la plus élevée (150) correspond au courant maximal mesurable avec l'instrument ($I_\mathrm{max}=\SI{0.05}{\ampere}$), le coefficient directeur devrait être de \SI{3}{graduation\per\milli\ampere}.
+Ces deux valeurs sont raisonnablement proches à ce stade pour supposer que la dernière graduation correspond à la valeur maximale indiquée sur le cadran.
+\footnote{La graduation du cadran en 150 divisions semble être commune à de nombreux modèles commercialisés par Chauvin \& Arnoux, même s'ils proposent d'autres échelles : 100, 125 et 150 divisions.}
 
 Pour en apprendre davantage sur l'instrument, nous décidons de le démonter :
 \begin{itemize}
@@ -523,38 +523,353 @@ Pour en apprendre davantage sur l'instrument, nous décidons de le démonter :
     \item on retire la vitre de protection, maintenu par une bague en laiton ajustée au cylindre qui fait le tour de l'instrument.
     Pour cela, on procède avec précaution, en exerçant à l'aide d'un gros tournevis un effort sur le dessous de la bague pour la soulever, en prenant appui sur les bornes de branchement de l'instrument pour faire un levier.
     La vitre repose simplement sur deux grands anneaux, l'un métallique et l'autre cartonné ;
-    \item on retire le cadrant en dévissant les deux vis en laiton, puis en le faisant pivoter à droite, tout en maintenant l'aiguille complètement à gauche.
+    \item on retire le cadran en dévissant les deux vis en laiton, puis en le faisant pivoter à droite, tout en maintenant l'aiguille complètement à gauche.
 \end{itemize}
 On se retrouve alors l'intérieur de l'instrument mieux visible (Fig.~\ref{fig:galva_amp_int}).
+
+\begin{figure}[htbp]
+    \center
+    \includegraphics[height=300 pt, trim=500 100 600 200, clip]{images/IMG_4037.JPG}
+    \caption{Le même galvanomètre, une fois la vitre et le cadran retirés.}
+    \label{fig:galva_amp_int}
+\end{figure}
 
 En plus des fils qui alimentent le cadre mobile, on remarque la présence d'un fil en forme de ressort qui relie les bornes du galvanomètre.
 Dans la notice (Ann.~\ref{ann:catalogue}), il est indiqué que la bobine du cadre mobile est de l'ordre de \SI{0.5}{\ohm}.
 Il est par ailleurs indiqué qu'\og une résistance en métal à coefficient de température nul est ajoutée pour le tarage de l'appareil \fg{}.
 Il semblerait que ce soit cette résistance qui fixe le calibre de l'appareil : plus la résistance est faible, plus on pourra mesurer des courants intenses puisque la plupart du courant passera à travers cette résistance.
 On parle de \emph{shunt}.
-Les indications du cadrant ($I_\mathrm{max}=\SI{0.05}{A}$ et $U_\mathrm{max}=\SI{0.04}{V}$) permettent de déduire la résistance équivalente de l'ensemble, correspondant à la résistance interne de l'appareil : on trouve \SI{0.8}{\ohm}.
+Les indications du cadran ($I_\mathrm{max}=\SI{0.05}{A}$ et $U_\mathrm{max}=\SI{0.04}{V}$) permettent de déduire la résistance équivalente de l'ensemble, correspondant à la résistance interne de l'appareil : on trouve \SI{0.8}{\ohm}.
 Cette résistance est difficilement vérifiable en raison de sa faible valeur.
 
+Alors que nous reprenons le galvanomètre pour effectuer des tests, nous nous apercevons que l'aiguille ne bouge plus lorsque l'appareil est branché dans un circuit.
+La mesure de la résistance interne totale de l'appareil entre ses deux bornes montre pourtant que le circuit est fermé, que les deux bornes sont bien reliées électriquement.
+Nous testons plusieurs configurations mais l'aiguille reste immobile.
+Avec un montage réalisé trop rapidement, nous apercevons de la fumée qui s'échappe de l'appareil : nous débranchons immédiatement le tout.
+\footnote{La fumée qui s'est échappée de l'appareil provient du matériau isolant qui recouvre le \emph{shunt}.
+Celui-ci a trop chauffé pendant cette manipulation maladroite, sans toutefois dégrader le fonctionnement de l'appareil.}
+Il apparait donc qu'un courant parcours l'appareil, mais comme l'aiguille ne réagit pas, nous suspectons un problème de connections entre le \emph{shunt} et la bobine du cadre mobile.
+
+Une inspection plus poussée de l'appareil montre en effet qu'une des brasures situées à l'arrière de l'appareil, qui relie une borne de la bobine du cadre mobile à un des fils gainés oranges est cassée.
+Après avoir gratté la peinture noire qui recouvre l'étain sur la brasure, nous la consolidons avec un apport d'étain supplémentaire.
+L'appareil est à nouveau en bon état de marche.
+
+L'appareil est finalement remonté après avoir nettoyé chaque pièce et notamment la vitre de protection, en veillant particulièrement à deux points :
+\begin{itemize}
+\item[•] l'aiguille doit être parfaitement droite pour évoluer librement dans l'espace réduit entre la vitre et le cadran ;
+\item[•] le réglage du zéro doit permettre de placer l'aiguille au centre du cadran : on y parvient en décalant légèrement la vitre pour placer convenablement le dispositif de réglage (voir section~\ref{sec:remontage_volt} pour plus de détails : les deux appareils étudiés sont conçus de manière très similaire).
+\end{itemize}
+Le travail de restauration sur cet appareil est donc assez limité puisque celui-ci était déjà en état de marche.
+Son démontage nous a cependant permis de mieux comprendre le fonctionnement de ce type de galvanomètre.
 
 
-Problème : réglage du zéro impossible, légèrement poussiéreux, fonctionne, pointe légèrement tordue
-
-Problème survenu plus tard : brasure défaillante et grille pain sur le fil ressort alors que la bobine n'était pas raccordée.
-
-\begin{figure}[htbp]
-    \center
-    \includegraphics[height=300 pt, trim=500 100 600 200, clip]{images/IMG_4037.JPG}
-    \caption{Le même galvanomètre, une fois la vitre et le cadrant retirés.}
-    \label{fig:galva_amp_int}
-\end{figure}
 
 
 
 \section{Le voltmètre}
 
+Le galvanomètre utilisé comme voltmètre que nous avons choisi d'étudier pour ce rapport est un appareil commercialisé par la société Chauvin Arnoux, probablement du début du XXème siècle, au regard de la notice de 1915 disponible en annexe~\ref{ann:catalogue}.
+
+\subsection{Description de l'appareil}
+
+Le voltmètre est composé d'un cadre en laiton de 25 cm de diamètre fixé sur une plaque de bois circulaire elle-même fixée sur un support de bois (noir) permettant de maintenir l'appareil en position verticale.
+L'aiguille est protégée par une plaque de verre circulaire qui comporte un insert permettant d'ajuster la position de l'aiguille sur le zéro de la graduation.
+L'aiguille est mobile, quand nous déplaçons l'appareil elle oscille légèrement et semble en bon état, le réglage du zéro est encore possible (Fig.~\ref{fig:galva_volt_av}).
+\begin{figure}[htbp]
+    \center
+    \includegraphics[height=300 pt]{images/20210205_150347_HDR.jpg}
+    \caption{L'appareil avant le démontage.}
+    \label{fig:galva_volt_av}
+\end{figure}
+
+Le cadran est gradué de 0 à 150 par pas de 2 dans les deux directions et semble destiné à mesurer les tensions des courants continus.
+Cet appareil ressemble très fortement à la description de la notice du constructeur et nous pouvons estimer son prix de 1915 selon les caractéristiques disponibles à ce stade :
+\begin{itemize}
+\item[•] 130 francs pour un appareil de diamètre \SI{25}{\centi\metre} ;
+\item[•] trois sensibilités en 150 divisions :
+\begin{itemize}
+\item \SI{15}{V} par \num{0.1} : 10 francs ;
+\item \SI{3}{V} par \num{0.02} : 5 francs ;
+\item \SI{1.5}{V} par \num{0.1} : 5francs ;
+\end{itemize}
+\end{itemize}
+pour une estimation à 150 francs de 1915,  soit un peu moins de 400 euros de 2021.
+L'appareil comporte quatre \og bornes \fg{} sur la partie supérieure et une ligne rouge semble symboliser le circuit interne de l'appareil. (Fig.~\ref{fig:galva_volt_glass}).
+Il semble que pour une utilisation normale, le courant doit passer par la borne 0 (position Ouest) et par une des trois autres bornes (\SI{1.5}{V}, \SI{3}{V} et \SI{15}{V}) pour pouvoir traverser la bobine du cadre mobile.
+Les bornes portent des valeurs qui font immédiatement penser à des calibres à la manière des voltmètres modernes.
+\begin{figure}
+    \center
+    \includegraphics[height=300 pt]{images/20210205_152634.jpg}
+    \caption{L'appareil après démontage de la vitre.}
+    \label{fig:galva_volt_glass}
+\end{figure}
+
+La borne \SI{1.5}{V} (position Nord Nord Ouest) porte l'indication \og R = 500 \fg{} et le schéma électrique tracé en rouge semble indiquer qu'un dipôle, probablement une résistance se situe à cette borne.
+
+La borne \SI{3}{V} (position Nord Nord Est) porte l'indication \og R = 1000 \fg{} et le schéma électrique tracé en rouge semble indiquer que le courant doit traverser deux résistances avant d'entrer dans la bobine du cadre mobile.
+
+La borne \SI{15}{V} (position Est) porte l'indication \og R = 5000 \fg{} et le schéma électrique tracé en rouge semble indiquer que le courant doit traverser trois résistances avant d'entrer dans la bobine du cadre mobile.
+
+Sur le cadran figure aussi une valeur \og I = 0.003 \fg{} faisant penser à une valeur d'intensité électrique.
+En appliquant la loi d'ohm à ces valeurs, le tout semble cohérent : en effet, par exemple avec le calibre le plus élevé, on a $ \SI{15}{V} = \SI{5000}{\ohm} \times \SI{0.003}{A}$.
+Cette valeur est donc sûrement l'intensité maximale traversant l'appareil à sa valeur limite de \SI{15}{V}.
+
+\subsection{Premières expériences}
+
+Nous avons essayé de placer l'appareil dans un circuit aux bornes d'un générateur de tension, en délivrant une tension inférieure au calibre sélectionné.
+À ce stade, aucune mesure n'est possible : l'aiguille ne bouge pas.
+Comme le cadran semble indiquer des résistances, nous utilisons un ohmmètre pour vérifier ces valeurs en utilisant les bornes de l'appareil.
+Aucune combinaison de borne, que ce soit entre la borne 0 et les autres ou entre les bornes \SI{1.5}{V}, \SI{3}{V}, \SI{15}{V} entre elles, ne permet une mesure.
+Nous utilisons ensuite le multimètre en testeur électrique sans parvenir à trouver de connexion entre les bornes de l'appareil.
+Problèmes identifiés à ce stade : le courant ne circule pas dans l'appareil en utilisant les bornes extérieures.
+
+Nous décidons donc d'enlever le cadran de mesure pour accéder aux composants de l'appareil. Il suffit pour cela de dévisser les vis en laiton qui maintiennent le cadran, de pivoter l'aiguille d'un côté et le cadran de l'autre pour le faire sortir.
+Nous voyons sur la figure~\ref{fig:galva_volt_bob} que le circuit est composé, comme le schéma du cadran le laissait penser, de trois bobines résistives sur des broches en cuivre, branchées en série.
+Une bobine résistive s'ajoute à la précédente quand le calibre de mesure augmente : une bobine résistive pour le calibre \SI{1.5}{V}, deux bobines résistives pour \SI{3}{V} et trois bobines résistives pour \SI{15}{V}.
+
+\begin{figure}[htbp]
+    \center
+    \includegraphics[height=300 pt]{images/20210205_155230_HDR.jpg}
+    \caption{Une fois le cadran retiré, on remarque trois bobines résistives (numérotées pour la suite 1, 2 et 3, de gauche à droite).}
+    \label{fig:galva_volt_bob}    
+\end{figure}
+
+Nous essayons de trouver un contact électrique avec le multimètre en grattant un peu le verni sur les soudures de part et d'autre des bobines résistives, sans succès.
+Nous réussissons cependant à faire bouger légèrement l'aiguille en appliquant un courant faible (courant de test de conductivité du multimètre) à la bobine seule en créant un contact électrique directement au niveau des soudures des fils gainés oranges.
+Hypothèse à ce stade : le fil d'une ou plusieurs bobines est cassé ou trop endommagé pour conduire le courant, mais la bobine sur le cadre mobile à l'intérieur de l'aimant fonctionne toujours.
+Nous décidons de démonter les bobines résistives une à une en commençant par la plus proche de la bobine du cadre mobile (Fig.~\ref{fig:bobine}).
+En espérant qu'une seule des trois soit défectueuse.
+
+\subsection{Les bobines résistives}
+
+\subsubsection{Démontage des bobines}
+
+\paragraph{Protocole pour le démontage et la caractérisation des bobines :}
+\begin{itemize}
+\item[•] la bobine est dessoudée de la borne de l'appareil.
+La brasure d'origine semble faite avec de l'étain :en effet le métal fond grâce à un fer à souder réglé sur 400°C ;
+\item[•] la broche de cuivre traverse l'axe de la bobine et les deux pièces sont maintenues par une brasure à l'étain du côté opposé de la borne de l'appareil.
+On la retire également avec le fer à souder ;
+\item[•] le diamètre du fil résistif est mesuré grâce à un pied à coulisse, puis avec un micromètre ;
+\item[•] la bobine est ensuite déroulée dans un long couloir et la longueur de fil mesurée grâce à un décamètre ;
+\item[•] la résistivité du fil a été mesurée avec un ohmmètre sur la plus grande distance possible de fil intacte dont la longueur est mesurée grâce à un décamètre.
+\end{itemize}
+
+\begin{figure}[htbp]
+    \center
+    \includegraphics[height=300 pt]{images/20210311_150656.jpg}
+    \caption{Une des trois bobines résistives sur sa broche de cuivre.
+    On voit à droite la bande de maintien de la bobine et en bas, le fil de cuivre isolé qui relie les bobines entre elles.}
+    \label{fig:bobine}
+\end{figure}
+
+Lors du déroulage du fil résistif, nous avons observé à plusieurs endroits que le fil était cassé, ce qui explique que l'appareil ne soit plus fonctionnel.
+Nous avons aussi constaté que le fil est isolé par un fil de soie très fin enroulé autour d'un fil métallique de couleur grise.
+Les fils de plus gros diamètre, qui relient les bobines entre elles sont des fils de cuivre isolés.
+Le fil résistif est maintenu en bobine par une bande isolante collante de couleur marron enroulée sur la bobine, seul le fil de cuivre isolé entre les bobines est visible une fois la bande collante mise en place.
+
+\subsubsection{Caractérisation des bobines}
+
+On s'intéresse au bobinage résistif correspondant au premier calibre du voltmètre (calibre \SI{1.5}{V}, résistance affichée \og R = 500\fg{}).
+Le protocole précédemment détaillé est appliqué à cette bobine pour la caractériser.
+Voici le compte-rendu des observations réalisées.
+
+Il y a sept tours de fil de cuivre tressé au-dessus d'un tour de ruban adhésif en toile puis un fil plus fin entouré de fil de soie.
+On déroule la bobine en comptant le nombre de tours : il y a 680 tours.
+La longueur totale du fil est mesurée avec un décamètre dans le couloir : le fil fin mesure \SI{21.8(2)}{m}.
+
+On mesure la résistance $R$ du fil pour quelques longueurs de fil :
+\begin{itemize}
+\item[•] pour \SI{1}{m} : on mesure la résistance d'un mètre de fil avec un multimètre $ R = \SI{16.6(2)}{\ohm}$.
+\item[•] pour \SI{10}{m} : on mesure la résistance de dix mètres de fil avec le multimètre $ R = \SI{177(5)}{\ohm} $
+\end{itemize}
+
+La section du fil est mesurée avec un pied à coulisse puis avec un micromètre : on trouve \SI{200}{\micro\metre} à plusieurs endroits du fil (sans la soie).
+Le rayon $r$ du fil résistif est donc proche de \SI{100}{\um} pour cette bobine.
+
+Avec ces mesures on peut finalement estimer la résistivité $\rho$ du matériau utilisé pour le fil :
+\[
+\rho = R \frac{\pi r^2}{l}
+\]
+et on trouve $\rho \sim \SI{50e-8}{\ohm\cdot\meter}$.
+Cette mesure de la résistivité du matériau ainsi que la couleur du métal plutôt grise nous fait dire que le fil résistif est probablement fait de constantan (alliage de cuivre et de nickel) \cite{res_fil}.
+
+La résistance totale de la bobine est par ailleurs estimée à $21{,}8 \times 17{,}7 \sim \SI{390}{\ohm}$.
+
+Ces mesures sont répétées pour les deux autres bobines (cassées également) ce qui permet d'obtenir les valeurs estimées du tableau~\ref{tab:bobines}.
+
+\begin{table}[htbp]
+    \center
+    \begin{tabular}{l|c|c|c}
+    & \textbf{Bobine 1} & \textbf{Bobine 2} & \textbf{Bobine 3} \\
+    \hline \hline
+    \textbf{Diamètre du fil} (\unit{\um})                           & \num{200} & \num{200}   & \num{100} \\
+    \textbf{Longueur du fil} (\unit{m})                             & \num{21,8} & \num{28}    & \num{61}\\
+    \textbf{Résistance linéique} (\unit{\ohm\per\metre})& \num{17}    & \num{17}    & \num{62}\\
+    \textbf{Résistance totale estimée} (\unit{\ohm})       & \num{386}  & \num{480}  & \num{3800}\\
+    \end{tabular}
+    \caption{Bilan des mesures réalisées permettant d'estimer les caractéristiques des bobines résistives.
+    Tous les fils résistifs sont en constantan.}
+    \label{tab:bobines}
+\end{table}
+
+La mesure du diamètre du fil est délicate.
+Nous avons aussi tenté de mesurer sa dimension en exploitant le phénomène de diffraction : un faisceau laser illumine le fil et on observe sur un écran éloigné une figure de diffraction.
+La taille de la tache centrale pourrait nous indiquer précisément la taille du fil puisque l'on connait la longueur d'onde du laser.
+Cette mesure réalisée à la hâte n'a cependant pas donné de résultats satisfaisants et devrait être répétée.
+
+\subsubsection{Test fonctionnel}
+
+Nous décidons de faire un test fonctionnel de l'appareil en utilisant des résistances modernes pour remplacer les bobines résistives.
+Nous choisissons une association de trois résistances correspondantes aux indications du cadran de l'appareil (Fig.~\ref{fig:galva_volt_res}), soit :
+\begin{align*}
+R_1 &= \qty{500}{\ohm} \quad (\qty{200}{\ohm} +\qty{150}{\ohm} + \qty{150}{\ohm}) ;\\
+R_2 &= \qty{500}{\ohm} \quad (\qty{250}{\ohm} + \qty{250}{\ohm} \text{ et } R_1 + R_2 = \qty{1000}{\ohm}) ;\\
+R_3 &= \qty{4000}{\ohm} \quad (\qty{2000}{\ohm} + \qty{2000}{\ohm} \text{ et } R_1 + R_2 + R_3 = \qty{5000}{\ohm}).
+\end{align*}
+
+\begin{figure}[htbp]
+    \center
+    \includegraphics[width=\linewidth]{images/20210312_112248.jpg}
+    \caption{Test de mesure pour une tension de \qty{1,5}{V} sur le calibre $R_1 = \qty{500}{\ohm}\ (\qty{150}{\ohm} + \qty{150}{\ohm} + \qty{200}{\ohm})$.}
+    \label{fig:galva_volt_res}
+\end{figure}
+Pour la mesure, nous réalisons un pont diviseur de tension, alimenté par un générateur de tension réglable.
+Un multimètre (noir) mesure la tension aux bornes du pont diviseur de tension : c'est grâce à cette mesure que nous ajustons la tension que le galvanomètre va mesurer.
+Le galvanomètre est branché lui aussi aux bornes du pont diviseur de tension, en série avec un multimètre qui nous permet de vérifier l'intensité du courant circulant dans le galvanomètre.
+Nous décidons de commencer les mesures en utilisant le plus petit calibre de l'appareil, nous devons donc utiliser seulement la résistance $R_1$, en série avec la bobine du cadre mobile.
+Une fois la tension de \qty{1,5}{V} appliquée aux bornes du pont diviseur de tension, nous constatons que l'aiguille indique la graduation 106, et pas la graduation 150 comme nous l'espérions.
+
+Une rapide application de la loi d'ohm pour la boucle du galvanomètre nous donne une résistance plus grande que \qty{500}{\ohm} :
+\[
+R = \frac{U}{I} = \frac{\num{1,524}}{\num{2,08e-3}} = \qty{732}{\ohm}.
+\]
+Nous décidons donc de vérifier la résistance totale du galvanomètre en utilisant un ohmmètre. 
+Entre la résistance $R_1$ et la borne 0 nous mesurons \qty{650}{\ohm}, la valeur est plus élevée que la résistance $R_1$ seule, mais pas égale à \qty{732}{\ohm}. 
+La première erreur est d'avoir utilisé de trop grandes longueurs de fil entre les appareils, l'addition des résistances bien que faibles des fils donne vite une erreur systématique de plusieurs dizaines d'ohms.
+La deuxième erreur, la plus importante, est que nous n'avons pas pris en compte la résistance de la bobine du cadre mobile que nous mesurons à \qty{150}{\ohm}. 
+Le document constructeur des appareils de 1915 (Ann.~\ref{ann:catalogue}) fait mention d'une résistance interne de \qty{75}{\ohm} en moyenne pour la bobine du cadre mobile, cette valeur semble cohérente avec ce que nous observons. 
+Afin de prendre en compte cette résistance interne de l'appareil, nous changeons la valeur de la résistance $R_1$ pour que la valeur totale de $R_1$ et de la bobine du cadre mobile soit égale à \qty{500}{\ohm}.
+
+On modifie donc la valeur de $R_1$ à \qty{350}{\ohm} ($\qty{200}{\ohm} + \qty{150}{\ohm}$ et $R_1 + R_\mathrm{cadre\ mobile} = \qty{500}{\ohm}$).
+Nous menons à nouveau l'expérience précédente, en minimisant les longueurs de fils de connexion.
+Cette fois, en appliquant une tension de \qty{1,5}{V}, l'aiguille du galvanomètre pointe exactement sur la graduation \num{150} et l'intensité traversant l'appareil est bien de \qty{3}{mA} (Fig.~\ref{fig:galva_volt_good}).
+
+\begin{figure}[htbp]
+    \center
+    \includegraphics[width=\linewidth]{images/20210312_112818.jpg}
+    \caption{Test de mesure pour une tension de \qty{1,5}{V} sur le calibre $R_1 = \qty{350}{\ohm}$ ($\qty{150}{\ohm} + \qty{200}{\ohm}$).
+    \label{fig:galva_volt_good}
+}
+\end{figure}
+
+Cette dernière expérience est bien conforme à l'utilisation prévue par le constructeur : \og Dans les voltmètres, le circuit du cadre mobile à une résistance moyenne de 75 ohms, et un courant de 5 milliampères (0.005) suffit pour donner à l'aiguille une déviation égale à la totalité de l'échelle.
+À la suite du cadre mobile, sont placées en série, avec lui, des bobines dont la résistance ne varie pas avec la température et dont la valeur est proportionnelle à la f. e. m. maxima à mesurer. \fg{}
+Pour notre appareil les valeur sont de \qty{150}{\ohm} pour la résistance du cadre mobile et de 3 milliampères pour la déviation maximale.
+
+\subsection{Remontage de l'appareil}
+\label{sec:remontage_volt}
+
+À ce stade, nous avons deux options pour le remontage de l'appareil :
+\begin{itemize}
+\item[•] remise en état à l'identique avec des matériaux neufs pour reconstruire les bobines résistives ;
+\item[•] remise en état fonctionnelle à l'identique en utilisant des résistance à semi-conducteurs modernes en remplacement des bobines résistives.
+\end{itemize}
+Notre objectif premier était de pouvoir remonter les bobines résistives avec des matériaux neufs.
+Cependant malgré les recherches de fournisseurs de fils résistifs en constantan ou autre alliage aux propriétés comparables, nous n'avons pas réussi à trouver un fournisseur capable de répondre à nos besoins très spécifiques.
+La problématique majeure pour eux étant de nous fournir de très petites quantités, comparées à leur échelle industrielle de fabrication.
+En effet nous avons eu plusieurs propositions pour nous fournir des kilogrammes de bobines de fils résistifs en constantan alors que notre besoin est de l'ordre de quelques dizaines de grammes par bobine dans l'appareil.
+L'offre étant beaucoup trop disproportionnée avec nos besoins, nous avons choisi d'utiliser des semi-conducteurs modernes pour faire fonctionner l'appareil.
+
+D'un point de vue purement fonctionnel, l'utilisation de résistances modernes n'impacte en rien le fonctionnement original de l'appareil.
+Dans la conception de l'appareil, les bobines résistives avaient pour seul et unique rôle de fournir une résistance électrique constante avec la température.
+\footnote{À ce titre, les résistances choisies ont une dépendance certaine avec la température qui peut nuire à la précision de l'appareil.
+Toutefois ces variations restent faibles.}
+L'appareil était d'ailleurs conçu de manière telle que les champs magnétiques induits par ces bobinages ne puissent pas influencer le mouvement de l'aiguille du cadre mobile.
+Les résistances choisies pour les différents calibres sont les suivantes (Fig.~\ref{fig:galva_volt_mod}) :
+\begin{itemize}
+\item[•] équivalents de la bobine résistive 1 : \qty{350}{\ohm} (deux résistances de \qty{150}{\ohm} en série suivies de deux résistances de \qty{100}{\ohm} en parallèle) ;
+\item[•] équivalents de la bobine résistive 2 : \qty{500}{\ohm} (deux résistances de \qty{500}{\ohm} en série) ;
+\item[•] équivalents de la bobine résistive 3 : \qty{4000}{\ohm} (deux résistances de \qty{2000}{\ohm} en série).
+\end{itemize}
+
+\begin{figure}[htbp]
+    \center
+    \includegraphics[height=300 pt]{images/20210505_155742_HDR.jpg}
+    \caption{Remontage de l'appareil avec des résistances modernes.
+    \label{fig:galva_volt_mod}
+}
+\end{figure}
+
+Nous avons ensuite dépoussiéré et nettoyé sommairement les parties de l'appareil avant remontage comme à l'origine.
+Il est nécessaire d'être minutieux lors du remontage de la vitre tout particulièrement en ce qui concerne l'insert de réglage du zéro.
+Il faut placer l'axe derrière la vitre sur l'axe de symétrie de la vitre, et veiller à ce que le petit axe se place entre les deux languettes du dessus du cadre mobile.
+Une fois la vitre positionnée, il faut régler le zéro de l'appareil et s'assurer que rien n'entrave la course de l'aiguille qui a un espace réduit de quelques millimètres pour se déplacer entre la vitre et le cadran.
 
 
-\section{Expérience type}
+
+
+
+
+
+
+
+\section{Un test de fonctionnement}
+
+Avec les deux appareils remontés, nous réalisons un test rapide pour s'assurer que les appareils fonctionnent correctement.
+Une expérience plus poussée permettant d'évaluer la précision des appareils n'a pu être réalisée par manque de temps.
+
+Un générateur stabilisé en tension et possédant deux calibres (\qty{6}{V} et \qty{12}{V}) alimente une résistance de \qty{300}{\ohm}.
+Le galvanomètre ampèremètre est branché en série avec la résistance et le galvanomètre voltmètre est branché aux bornes de la résistance (Fig.~\ref{fig:circuit}).
+Ce denier est utilisé avec son plus gros calibre (\qty{15}{V}, résistance interne \qty{5000}{\ohm}).
+On mesure donc simultanément le courant $I$ qui parcourt la résistance et la tension $U$ à ses bornes.
+La loi d'ohm permet d'évaluer rapidement la cohérence des mesures obtenues en calculant le courant $I_\mathrm{ohm}$ attendu dans le circuit compte tenu des composants utilisés (Tab.~\ref{tab:mesures}).
+
+\begin{figure}[htbp]
+    \center
+    \begin{circuitikz}
+        \draw (0,0) to [vsource, v=\qty{6}{V} -- \qty{12}{V}, i=$I$] (0,3);
+        \draw (0,3) to [rmeter, t=A] (3,3);
+        \draw (3,3) to [R, l=$R$] (3,0);
+        \draw (3,0) -- (0,0);
+        \draw (3,3) -- (5,3) to [rmeter, t=V] (5,0) -- (3,0);
+    \end{circuitikz}
+    \caption{Circuit utilisé pour les mesures.}
+    \label{fig:circuit}
+\end{figure}
+
+\begin{table}[htbp]
+    \center
+    \begin{tabular}{c|c|c|c|c|c|c}
+        \textbf{Tension du générateur} & \multicolumn{2}{c|}{\textbf{Tension} $U$} & \multicolumn{2}{c|}{\textbf{Courant} $I$} & \multicolumn{2}{c}{\textbf{Courant} $I_\mathrm{ohm}$} \\
+        (\unit{\volt}) & (\unit{graduation}) & (\unit{\volt}) & (\unit{graduation}) & (\unit{\volt}) & (\unit{mA}) & corrigé (\unit{mA)} \\
+        \hline \hline
+        \num{12} & \num{120} & \num{12,0} & \num{128} & \num{42,7} & \num{40} & \num{42,4} \\
+        \num{6} & \num{58} & \num{5,8} & \num{62} & \num{20,7} & \num{20} & \num{20,5} 
+    \end{tabular}
+    \caption{Mesures relevées lors du test de fonctionnement des appareils.
+    La première colonne indique le calibre du générateur de tension.
+    Les deux suivantes indiquent la valeur de tension relevée sur le galvanomètre voltmètre : la tension en volts se calcule à partir de la lecture sur l'appareil en tenant compte du calibre utilisé (ici, \qty{15}{V} correspond à la graduation \num{150}).
+    Les deux d'après indiquent la valeur du courant mesuré avec le galvanomètre ampèremètre : le courant en ampère se calcule à partir de la lecture sur l'appareil (ici, \qty{0,050}{A} correspond à la graduation \num{150}).
+    L'avant dernière colonne donne le courant estimé avec la loi d'ohm d'après le calibre du générateur.
+    La dernière tient compte de la présence des différents appareils, notament de celle du voltmètre dont la résistance interne de \qty{5}{k\ohm} affecte le montage.}
+    \label{tab:mesures}
+\end{table}
+
+Avec ces résultats, on constate que les appareils fonctionne convenablement : 
+\begin{itemize}
+\item[•] la tension correspond à la valeur du calibre du générateur (il faudrait la mesurer avec précision pour établir une comparaison plus quantitative).
+L'influence de l'ampèremètre sur le montage est négligeable, avec sa résistance interne de l'ordre du ohm ;
+\item[•] le courant mesuré est en très bon accord avec les valeurs attendues, notamment lorsqu'on tient compte de la présence du voltmètre qui perturbe la mesure.
+En effet, sa résistance interne de \qty{5}{k\ohm} n'est pas si grande par rapport à la résistance utilisée dans le montage.
+Elle est bien plus faible que la résistance de nombreux appareils plus modernes ($\sim\qty{1}{\mega\ohm}$) et il faut la prendre en compte pour obtenir des résultats précis.
+La résistance équivalente à l'ensemble \{$R$, galvanomètre\} est de \qty{283}{\ohm}, ce qui explique le courant légèrement plus important que celui attendu.
+\end{itemize}
+Si la présence de l'ampèremètre n'est pas source de perturbation majeure dans ce montage, le voltmètre affecte sensiblement la mesure.
+Il convient de prendre en compte la totalité du montage lorsque des mesures précises sont prévues.
+
+
+
 
 
 
