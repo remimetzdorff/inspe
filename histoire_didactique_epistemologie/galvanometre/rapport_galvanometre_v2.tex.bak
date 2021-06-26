@@ -243,7 +243,7 @@ On s'intéresse au seul degré de liberté $\theta$ du système, qui correspond 
 \subsubsection{Équations du mouvement}
 
 Le système étudié est l'ensemble \{bobine + aiguille\}.
-La bobine est supposé plate, rectangulaire de côtés $a$ et $b$ délimitant une surface $S$ et formée de $N$ spires parcourue par un courant constant d'intensité $I$ dont l'orientation définie celle du vecteur $\vec{n}$ normal à la surface $S$.
+La bobine est supposé plate, rectangulaire de côtés $a$ et $b$ délimitant une surface $S$ et formée de $N$ spires parcourue par un courant constant d'intensité $I$ dont l'orientation définit celle du vecteur $\vec{n}$ normal à la surface $S$.
 On l'assimile à un dipôle magnétique dont le moment est $\vec{\mu} = NSI\vec{n}$.
 L'ensemble bobine et aiguille possède par ailleurs un moment d'inertie $J$.
 
@@ -944,9 +944,11 @@ Les promesses du fabricants indiquées dans le catalogue se sont par ailleurs av
 
 \begin{figure}[htbp]
     \center
-    \includegraphics[width=\linwidth/2, trim=0 0 0 0, clip]{images/IMG_4045.JPG}
-    
-
+    \begin{multicols}{2}
+    \includegraphics[width=\linewidth, trim=400 300 600 200, clip]{images/IMG_4045.JPG}
+    \includegraphics[width=\linewidth, trim=500 300 500 200, clip]{images/IMG_4047.JPG}
+    \end{multicols}
+    \caption{Les deux galvanomètres remis en état.}
 \end{figure}
 
 
